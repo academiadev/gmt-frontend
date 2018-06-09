@@ -1,0 +1,53 @@
+.example-form {
+    min-width: 150px;
+    max-width: 433px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 80%;
+    margin-left: 50px;
+  }
+  
+  .login-card{
+    max-width: 433px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0px;
+    height: 300px;
+    margin-top: 50px;
+    box-shadow: 0 2px 5px 0 var(--black-26);
+  }
+  
+  .mat-card-header{
+    background-color: #2687e9;
+    padding: 5px;
+  }
+  
+  .mat-card-content{
+    margin-top: 15px;
+    padding: 5px;
+  }
+  
+  h2{
+    color: #FFFFfF;
+    width: 400px;
+    text-align: center;
+  }
+  
+  .btn-login{
+    width: 345px;
+    margin-left: 50px;
+    margin-top: 10px;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.24), 0 0 2px 0 rgba(0, 0, 0, 0.12);
+    background: black;
+    background-color: #2687e9;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.24), 0 0 2px 0 rgba(0, 0, 0, 0.12);
+  }
+  
+  .mat-icon {
+    position: relative;
+    /* Adjust these values accordingly */
+    right: 5px;
+    top: 4px;
+  }
