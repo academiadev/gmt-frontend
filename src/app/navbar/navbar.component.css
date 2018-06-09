@@ -1,8 +1,19 @@
-.sidenav-container {
-  height: 100%;
+.fill-remaining-space {
+  /*This fills the remaining space, by using flexbox.  
+ Every toolbar row uses a flexbox row layout. */
+ flex: 1 1 auto;
 }
 
-.sidenav {
-  width: 200px;
-  box-shadow: 3px 0 6px rgba(0,0,0,.24);
+.reembolso-contaazul {
+width: 244.6px;
+height: 31.5px;
+font-family: AmpleSoft;
+font-size: 20px;
+font-weight: 500;
+font-style: normal;
+font-stretch: normal;
+line-height: 1.4;
+letter-spacing: normal;
+text-align: left;
+color: #ffffff;
 }
