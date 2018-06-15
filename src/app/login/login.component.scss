@@ -6,7 +6,16 @@
   min-width: 200px;
   border-radius: 4px;
   background-color: #F1F4F9;
-  padding: 0 20px;
+}
+
+.card-body {
+  margin: 0px 20px 0px 20px;
+}
+
+.alert-list {
+  font-size: 14px;
+  padding: 0 0 0 20px;
+  margin: 0;
 }
 
 .login-control {
