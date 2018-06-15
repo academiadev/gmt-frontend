@@ -1,14 +1,14 @@
+import { environment } from './../../../environments/environment';
+import { TokenDTO } from './../../dto/token-dto';
+import { BadCredentialsError } from './../../commons/bad-credentials';
+import { LoginDTO } from './../../dto/login-dto';
+import { AuthService } from './../../service/auth.service';
 import { UsuarioValidator } from './usuario.validators';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AuthService } from './../service/auth.service';
-import { LoginDTO } from './../dto/login-dto';
 import { HttpErrorResponse } from '@angular/common/http';
-import { BadCredentialsError } from './../commons/bad-credentials';
 import { ToastrService } from 'ngx-toastr';
-import { TokenDTO } from '../dto/token-dto';
-import { environment } from './../../environments/environment';
 
 @Component({
   selector: 'app-login',

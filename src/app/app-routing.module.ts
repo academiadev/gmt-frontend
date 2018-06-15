@@ -1,13 +1,13 @@
+import { CompanyComponent } from './pages/company/company.component';
+import { CompanyEditComponent } from './pages/company-edit/company-edit.component';
+import { DashComponent } from './pages/dash/dash.component';
+import { LoginComponent } from './pages/login/login.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { NotFoundComponent } from './not-found/not-found.component';
-import { LoginComponent } from './login/login.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { AuthGuard } from './service/auth-guard.service';
 import { LoginGuard } from './service/login-guard.service';
-import { DashComponent } from './dash/dash.component';
-import { CompanyEditComponent } from './company-edit/company-edit.component';
-import { CompanyComponent } from './company/company.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 const routes: Routes = [
