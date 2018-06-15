@@ -8,6 +8,7 @@ import { LoginGuard } from './service/login-guard.service';
 import { DashComponent } from './dash/dash.component';
 import { CompanyEditComponent } from './company-edit/company-edit.component';
 import { CompanyComponent } from './company/company.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -25,9 +26,12 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {
-    useHash: true
-  })],
+  imports: [
+    RouterModule.forRoot(routes, {
+      useHash: true
+    }),
+    NgbModule,
+  ],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

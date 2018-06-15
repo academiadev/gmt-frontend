@@ -2,19 +2,20 @@
 // `ng build ---prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+let backEndUrl = 'http://localhost:8082';
 export const environment = {
   production: false,
-  backEndUrl: 'http://localhost:8080',
+  backEndUrl: backEndUrl,
   tokenName: 'access_token',
   urls: {
-    auth: {
-      url: 'http://localhost:8080/auth',
-      login: 'http://localhost:8080/auth/login',
-      refresh: 'http://localhost:8080/auth/refresh',
-    },
-    company: {
-      url: 'http://localhost:8080/company'
-    }
+      auth: {
+          url: backEndUrl+'/auth',
+          login: backEndUrl+'/auth/login',
+          refresh: backEndUrl+'/auth/refresh',
+      },
+      company: {
+          url: 'http://localhost:8080/company'
+      }
   }
 };
 

@@ -1,53 +1,52 @@
-.example-form {
-    min-width: 150px;
-    max-width: 433px;
-    width: 100%;
+.login-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  min-width: 200px;
+  border-radius: 4px;
+  background-color: #F1F4F9;
+}
+
+.card-body {
+  margin: 0px 20px 0px 20px;
+}
+
+.alert-list {
+  font-size: 14px;
+  padding: 0 0 0 20px;
+  margin: 0;
+}
+
+.login-control {
+  font-size: 16px;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #C9D3DD;
+  border-radius: 3px;
+  background-color: #fff;
+}
+
+.login-form-row {
+  margin: 20px 0 20px 0;
+}
+
+.login-links {
+  font-size: 16px;
+  div{
+    min-width: 11em;
+    padding: 0;
   }
-  
-  .example-full-width {
-    width: 80%;
-    margin-left: 50px;
-  }
-  
-  .login-card{
-    max-width: 433px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 0px;
-    height: 300px;
-    margin-top: 50px;
-    box-shadow: 0 2px 5px 0 var(--black-26);
-  }
-  
-  .mat-card-header{
-    background-color: #2687e9;
-    padding: 5px;
-  }
-  
-  .mat-card-content{
-    margin-top: 15px;
-    padding: 5px;
-  }
-  
-  h2{
-    color: #FFFFfF;
-    width: 400px;
-    text-align: center;
-  }
-  
-  .btn-login{
-    width: 345px;
-    margin-left: 50px;
-    margin-top: 10px;
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.24), 0 0 2px 0 rgba(0, 0, 0, 0.12);
-    background: black;
-    background-color: #2687e9;
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.24), 0 0 2px 0 rgba(0, 0, 0, 0.12);
-  }
-  
-  .mat-icon {
-    position: relative;
-    /* Adjust these values accordingly */
-    right: 5px;
-    top: 4px;
-  }
+}
+
+#floating-footer{
+  padding: 1em 2em 1em 4em;
+  display: block;
+  margin-top: 2em;
+  width: 40em;
+  border-top: 1px solid #e5e5e5;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
