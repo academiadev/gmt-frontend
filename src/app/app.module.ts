@@ -23,6 +23,7 @@ import { environment } from '../environments/environment';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { RequestPasswordComponent } from './pages/request-password/request-password.component';
 
 export function tokenGetter() {
   const token = localStorage.getItem(environment.tokenName);
@@ -39,7 +40,8 @@ export function tokenGetter() {
     CreateUserComponent,
     NavigationComponent,
     CompanyComponent,
-    CompanyEditComponent
+    CompanyEditComponent,
+    RequestPasswordComponent
   ],
   imports: [
     FormsModule,
