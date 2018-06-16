@@ -19,6 +19,8 @@ import { ToastrService } from 'ngx-toastr';
 export class CreateUserComponent implements OnInit {
   form: FormGroup;
 
+  hasInvitation : Boolean = false;
+
   constructor(
     private router: Router,
     private authService: AuthService,

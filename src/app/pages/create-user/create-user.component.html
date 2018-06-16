@@ -25,20 +25,20 @@
             </div>
 
             <div class="custom-radio">
-                <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
+                <input (change)="hasInvitation=true" type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
                 <label class="custom-control-label" for="customRadio1">Utilizar código-convite</label>
             </div>
             <div class="custom-radio">
-                <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
+                <input checked="checked" (change)="hasInvitation=false" type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
                 <label class="custom-control-label" for="customRadio2">Criar nova empresa (Administrador)</label>
             </div>
 
-            <div class="row mt-3 mb-3">
+            <div *ngIf="hasInvitation" class="row mt-3 mb-3">
                 <label for="invite-code">Código-convite</label>
                 <input type="text" id="invite-code" class="login-control" required>
             </div>
 
-            <div class="row mt-3 mb-3">
+            <div *ngIf="!hasInvitation" class="row mt-3 mb-3">
                 <label for="company-name">Nome da empresa</label>
                 <input type="text" id="company-name" class="login-control" required>
             </div>
