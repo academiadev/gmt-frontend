@@ -1,0 +1,66 @@
+<div></div>
+<div class="card login-container">
+    <div class="card-body">
+        <h4 class="card-title text-center mt-0 mb-4">Cadastro de usuário</h4>
+
+        <form class="form-signin" [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+            <div class="row mt-3 mb-3">
+                <label for="input-name">Nome</label>
+                <input type="text" id="input-name" class="login-control" placeholder="Nome" required autofocus>
+            </div>
+
+            <div class="row mt-3 mb-3">
+                <label for="input-email">Endereço de Email</label>
+                <input type="email" id="input-email" class="login-control" placeholder="Email" required>
+            </div>
+
+            <div class="row mt-3 mb-3">
+                <label for="input-password">Senha</label>
+                <input type="password" id="input-password" class="login-control" placeholder="Senha" required>
+            </div>
+
+            <div class="row mt-3 mb-3">
+                <label for="input-password-confirm">Confirmar senha</label>
+                <input type="password" id="input-password-confirm" class="login-control" placeholder="Repita a senha" required>
+            </div>
+
+            <div class="custom-radio">
+                <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
+                <label class="custom-control-label" for="customRadio1">Utilizar código-convite</label>
+            </div>
+            <div class="custom-radio">
+                <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
+                <label class="custom-control-label" for="customRadio2">Criar nova empresa (Administrador)</label>
+            </div>
+
+            <div class="row mt-3 mb-3">
+                <label for="input-password-confirm">Código-convite</label>
+                <input type="text" id="input-password-confirm" class="login-control" required>
+            </div>
+
+            <div class="row mt-3 mb-3">
+                <label for="input-password-confirm">Nome da empresa</label>
+                <input type="text" id="input-password-confirm" class="login-control" required>
+            </div>
+
+            <div class="row mt-5 mb-4">
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Cadastrar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<footer id="floating-footer">
+    <div class="row">
+        <div class="col-5">
+            Desenvolvido por uma galera top
+        </div>
+        <div class="col-3">
+        </div>
+        <div class="col-4">
+            <h5>Patrocinadores:</h5>
+            <div>ContaAzul</div>
+            <div>Code:Nation</div>
+        </div>
+    </div>
+</footer>

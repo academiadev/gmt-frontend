@@ -1,3 +1,4 @@
+import { CreateUserComponent } from './pages/create-user/create-user.component';
 import { CompanyComponent } from './pages/company/company.component';
 import { CompanyEditComponent } from './pages/company-edit/company-edit.component';
 import { DashComponent } from './pages/dash/dash.component';
@@ -13,6 +14,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent, canActivate: [LoginGuard] },
+  { path: 'registrar', component: CreateUserComponent },
   { path: 'not-found', component: NotFoundComponent },
   {
     path: '', component: NavigationComponent, canActivate: [AuthGuard],

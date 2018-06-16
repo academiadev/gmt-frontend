@@ -1,3 +1,4 @@
+import { CreateUserComponent } from './pages/create-user/create-user.component';
 import { NavbarComponent } from './pages/navbar/navbar.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { DashComponent } from './pages/dash/dash.component';
@@ -35,6 +36,7 @@ export function tokenGetter() {
     DashComponent,
     NotFoundComponent,
     LoginComponent,
+    CreateUserComponent,
     NavigationComponent,
     CompanyComponent,
     CompanyEditComponent
