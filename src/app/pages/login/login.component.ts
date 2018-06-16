@@ -28,19 +28,20 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.form = new FormGroup({
-      'usuario': new FormControl(
+      'email': new FormControl(
         '',
         [
           Validators.minLength(4), Validators.required,
           UsuarioValidator.temEspacosEmBranco
         ]
       ),
-      'senha': new FormControl('', [Validators.required])
+      'password': new FormControl('', [Validators.required])
     });
   }
 
   onSubmit(user: LoginDTO) {
     this.authService.login(user).subscribe((token: TokenDTO) => {
+      console.log(token);
       localStorage.setItem(environment.tokenName, token.access_token);
 
       const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
@@ -61,12 +62,12 @@ export class LoginComponent implements OnInit {
   }
 
   get usuario() {
-    return this.form.get('usuario');
+    return this.form.get('email');
   }
 
 
   get senha() {
-    return this.form.get('senha');
+    return this.form.get('password');
   }
 
 }
