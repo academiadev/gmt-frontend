@@ -1,11 +1,11 @@
 .login-container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%);
+  margin: 0 auto;
   min-width: 200px;
+  max-width: 400px;
   border-radius: 4px;
   background-color: #F1F4F9;
+  margin-top: 8em;
+  margin-bottom: 5em;
 }
 
 .card-body {
@@ -31,6 +31,11 @@
   margin: 20px 0 20px 0;
 }
 
+input.ng-invalid.ng-dirty {
+  background: rgb(255, 233, 233);
+  border: 1px solid #ff3232;
+}
+
 .login-links {
   font-size: 16px;
   div{
@@ -41,12 +46,9 @@
 
 #floating-footer{
   padding: 1em 2em 1em 4em;
-  display: block;
+  margin: 0 auto;
   margin-top: 2em;
-  width: 40em;
+  max-width: 40em;
   border-top: 1px solid #e5e5e5;
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translate(-50%, 0);
 }
+

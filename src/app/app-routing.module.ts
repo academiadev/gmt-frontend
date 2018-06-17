@@ -1,3 +1,4 @@
+import { ChangePasswordComponent } from './pages/change-password/change-password.component';
 import { CreateUserComponent } from './pages/create-user/create-user.component';
 import { CompanyComponent } from './pages/company/company.component';
 import { CompanyEditComponent } from './pages/company-edit/company-edit.component';
@@ -20,8 +21,9 @@ const routes: Routes = [
       { path: ':token', component: CreateUserComponent } 
     ] 
   },
-  { path: 'trocar-senha', component: RequestPasswordComponent, canActivate: [LoginGuard] },
-  //{ path: 'trocar-senha/:codigo', component: NewPasswordComponent, canActivate: [LoginGuard] },
+  { path: 'trocar-senha', redirectTo: 'perdi-senha', pathMatch: 'full', canActivate: [LoginGuard] },
+  { path: 'trocar-senha/:codigo', component: ChangePasswordComponent, canActivate: [LoginGuard] },
+  { path: 'perdi-senha', component: RequestPasswordComponent, canActivate: [LoginGuard] },
   { path: 'not-found', component: NotFoundComponent },
   {
     path: '', component: NavigationComponent, canActivate: [AuthGuard],

@@ -1,3 +1,4 @@
+import { ChangePasswordComponent } from './pages/change-password/change-password.component';
 import { CreateUserComponent } from './pages/create-user/create-user.component';
 import { NavbarComponent } from './pages/navbar/navbar.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
@@ -41,7 +42,8 @@ export function tokenGetter() {
     NavigationComponent,
     CompanyComponent,
     CompanyEditComponent,
-    RequestPasswordComponent
+    RequestPasswordComponent,
+    ChangePasswordComponent
   ],
   imports: [
     FormsModule,

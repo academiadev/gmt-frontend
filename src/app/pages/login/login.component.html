@@ -1,46 +1,7 @@
-<!--
-<mat-card class="login-card">
-    <mat-card-header>
-        <mat-card-title>
-            <h2>
-                <mat-icon>dashboard</mat-icon>Reembolso
-            </h2>
-        </mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-        <form class="example-form" [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
-            <mat-form-field class="example-full-width">
-                <input matInput formControlName="usuario" name="usuario" placeholder="Usuário">
-                <mat-error *ngIf="usuario.touched && usuario.invalid">
-                    <div *ngIf="usuario.errors.required">Usuário é
-                        <strong>obrigatório</strong>
-                    </div>
-                    <div *ngIf="usuario.errors.minlength">Usuário precisa ter no mínimo {{usuario.errors.minlength.requiredLength}} caracteres</div>
-                    <div *ngIf="usuario.errors.temEspacosEmBranco">Não pode conter espaços em branco</div>
-                    <div *ngIf="usuario.errors.jaExisteP">Este nome ja existe</div>
-
-                </mat-error>
-                <mat-error *ngIf="form.errors != null && form.errors.usuarioinvalido">Usuário inválido</mat-error>
-                <mat-hint *ngIf="usuario.pending">
-                    Verificando duplicidade...
-                </mat-hint>
-            </mat-form-field>
-            <mat-form-field class="example-full-width">
-                <input matInput formControlName="senha" type="password" placeholder="Senha">
-                <mat-error *ngIf="senha.touched && senha.invalid">
-                    <div *ngIf="senha.errors.invalido">Senha inválida</div>
-                </mat-error>
-            </mat-form-field>
-            <button [disabled]="form.invalid || form.pending" class="btn-login" type="submit" mat-raised-button color="primary">LOGIN</button>
-        </form>
-    </mat-card-content>
-</mat-card>
--->
-
 <div class="card login-container">
-    <ngb-alert type="danger" class="text-center" *ngIf="!closed" (close)="closed=true">
-        <ul class="alert-list text-center">
-            <li>Usuário ou senha não encontrada!</li>
+    <ngb-alert type="danger" *ngIf="errors.length > 0" (close)="errors=[]">
+        <ul class="alert-list" >
+            <li *ngFor="let error of errors">{{ error }}</li>
         </ul>
     </ngb-alert>
     <div class="card-body">
@@ -59,8 +20,8 @@
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
             </div>
             <div class="login-links row justify-content-between">
-                <div class="col-6">Esqueceu sua senha?</div>
-                <div class="col-5 text-right">Quero me cadastrar</div>
+                <div class="col-6"><a [routerLink]="['/perdi-senha']" class="no-style">Esqueceu sua senha?</a></div>
+                <div class="col-5 text-right"><a [routerLink]="['/registrar']" class="no-style">Quero me cadastrar</a></div>
             </div>
 
         </form>
