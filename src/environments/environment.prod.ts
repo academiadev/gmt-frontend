@@ -10,6 +10,9 @@ export const environment = {
     },
     company: {
       url: 'https://powerful-retreat-98533.herokuapp.com/company'
+    },
+    user: {
+      url: 'https://powerful-retreat-98533.herokuapp.com/user/'
     }
   }
 };

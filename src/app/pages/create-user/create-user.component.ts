@@ -1,3 +1,4 @@
+import { CreateUserService } from './../../service/create-user-service';
 import { CreateOnlyUserDTO } from './../../dto/create-only-user-dto';
 import { CreateUserCompanyDTO } from './../../dto/create-user-company-dto';
 import { environment } from './../../../environments/environment';
@@ -23,10 +24,11 @@ export class CreateUserComponent implements OnInit {
   form: FormGroup;
 
   hasInvitation : Boolean = false;
+  errors: Array<any> = [];
 
   constructor(
     private router: Router,
-    private authService: AuthService,
+    private createUserService: CreateUserService,
     private route: ActivatedRoute,
     private toaster: ToastrService
   ) { }
@@ -74,36 +76,53 @@ export class CreateUserComponent implements OnInit {
 
   onSubmit(user: any) {
     //TODO verificar senhas iguais
-    <CreateOnlyUserDTO>user
+    /*if(this.form.invalid) {//TODO validacoes criacao de usuario
+      this.errors = [];
+      if(!this.form.controls.email.valid)
+        this.errors.push("Forneça um email válido!");
+      if(!this.form.controls.password.valid)
+        this.errors.push("Forneça uma senha válida!");
+      return;
+    }*/
+
+    let dto:any;
+    //TODO essa e a melhor forma de criar os dois tipos de DTO?
     if(this.hasInvitation) {
-      delete user["value"]["companyName"];
-      delete user["value"]["confirmPassword"];
-      let dto: CreateOnlyUserDTO = user["value"] as CreateOnlyUserDTO;//TODO tentar user o construtor
-      console.log(dto);
+      delete user["companyName"];
+      delete user["confirmPassword"];
+      dto = user as CreateOnlyUserDTO;//TODO tentar user o construtor
     }else {
-      delete user["value"]["companyCode"];
-      delete user["value"]["confirmPassword"];
-      let dto: CreateUserCompanyDTO = user["value"] as CreateUserCompanyDTO;
-      console.log(dto);
+      delete user["companyCode"];
+      delete user["confirmPassword"];
+      dto = user as CreateUserCompanyDTO;
     }
-    /*this.authService.login(user).subscribe((token: TokenDTO) => {
-      localStorage.setItem(environment.tokenName, token.access_token);
-
-      const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
-      this.router.navigate([returnUrl || '/home']);
-
-      this.authService.refresh().subscribe(e => {
-        console.log(e);
-      });
-
-    },
+    console.log(dto);
+    
+    if(this.hasInvitation) {
+      this.createUserService.registerOnlyUser(dto).subscribe((token: CreateOnlyUserDTO) => {
+        const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
+        this.router.navigate([returnUrl || '/home']);  
+      },
       (e) => {
-        if (e instanceof BadCredentialsError) {
-          this.senha.setErrors({ 'invalido': true });
+        if (e instanceof BadCredentialsError) {//TODO verificar erros
+          this.password.setErrors({ 'invalido': true });
         } else {
           throw e;
         }
-      });*/
+      });
+    }else {
+      this.createUserService.registerUserCompany(dto).subscribe((token: CreateUserCompanyDTO) => {
+        const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
+        this.router.navigate([returnUrl || '/home']);  
+      },
+      (e) => {
+        if (e instanceof BadCredentialsError) {//TODO verificar erros
+          this.password.setErrors({ 'invalido': true });
+        } else {
+          throw e;
+        }
+      });     
+    }
   }
 
   get usuario() {
@@ -111,8 +130,8 @@ export class CreateUserComponent implements OnInit {
   }
 
 
-  get senha() {
-    return this.form.get('senha');
+  get password() {
+    return this.form.get('password');
   }
 
 }

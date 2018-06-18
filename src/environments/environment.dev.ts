@@ -7,10 +7,13 @@ export const environment = {
       auth: {
           url: backEndUrl+'/auth',
           login: backEndUrl+'/auth/login',
-          refresh: backEndUrl+'/auth/refresh',
+          refresh: backEndUrl+'/auth/refresh'
       },
       company: {
           url: 'http://localhost:8080/company'
-      }
+      },
+      user: {
+        url: backEndUrl+'/user/'
+    }
   }
 };
