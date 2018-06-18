@@ -25,6 +25,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RequestPasswordComponent } from './pages/request-password/request-password.component';
+import { RefundListComponent } from './pages/refund-list/refund-list.component';
 
 export function tokenGetter() {
   const token = localStorage.getItem(environment.tokenName);
@@ -43,7 +44,8 @@ export function tokenGetter() {
     CompanyComponent,
     CompanyEditComponent,
     RequestPasswordComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    RefundListComponent
   ],
   imports: [
     FormsModule,

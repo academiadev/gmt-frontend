@@ -1,3 +1,4 @@
+import { RefundListComponent } from './pages/refund-list/refund-list.component';
 import { ChangePasswordComponent } from './pages/change-password/change-password.component';
 import { CreateUserComponent } from './pages/create-user/create-user.component';
 import { CompanyComponent } from './pages/company/company.component';
@@ -25,6 +26,7 @@ const routes: Routes = [
   { path: 'trocar-senha/:codigo', component: ChangePasswordComponent, canActivate: [LoginGuard] },
   { path: 'perdi-senha', component: RequestPasswordComponent, canActivate: [LoginGuard] },
   { path: 'not-found', component: NotFoundComponent },
+  { path: 'reembolso', component: RefundListComponent},
   {
     path: '', component: NavigationComponent, canActivate: [AuthGuard],
     children: [
