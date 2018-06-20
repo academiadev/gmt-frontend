@@ -41,14 +41,14 @@ export class UserService extends DataService {
 
   //Mudar a rota nos environments 
   requestPassword(email: String): Observable<boolean> {
-    return this.http.post(environment.urls.requestPassword.url, email).pipe(
+    return this.http.post(environment.urls.password.request, email).pipe(
       map(res => <boolean>res),
       catchError(this.handleError)
     );
   }
 
   changePassword(passwords: ChangePasswordDTO): Observable<boolean> {
-    return this.http.post(environment.urls.changePassword.url, passwords).pipe(
+    return this.http.post(environment.urls.password.change, passwords).pipe(
       map(res => <boolean>res),
       catchError(this.handleError)
     );
