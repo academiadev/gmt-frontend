@@ -19,6 +19,9 @@ export const environment = {
         requestPassword: {
             url: backEndUrl + '/requestPassword/'
         },
+        changePassword: {
+            url: backEndUrl + '/changePassword/'
+        },
         user: {
             url: backEndUrl + '/user/'
         }

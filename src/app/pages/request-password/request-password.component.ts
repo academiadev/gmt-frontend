@@ -6,7 +6,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
-import { RequestPasswordService } from '../../service/request-password.service';
+import { UserService } from '../../service/user.service';
 
 
 @Component({
@@ -23,7 +23,7 @@ export class RequestPasswordComponent implements OnInit {
   constructor(
     private router: Router,
     private authService: AuthService,
-    private requestPasswordService: RequestPasswordService,
+    private userService: UserService,
     private route: ActivatedRoute,
     private toaster: ToastrService
   ) { }
@@ -46,22 +46,14 @@ export class RequestPasswordComponent implements OnInit {
         this.errors.push("Forneça um email válido!");
       return;
     }
-    this.requestPasswordService.requestPassword(email).subscribe((reponse: boolean) => {
+    this.userService.requestPassword(email).subscribe((reponse: boolean) => {
 
       const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
-      this.router.navigate([returnUrl || '/predi-senha-enviado']);
-
-      this.authService.refresh().subscribe(e => {
-        console.log(e);
-      });
+      this.router.navigate([returnUrl || '/perdi-senha-enviado']);
 
     },
       (e) => {
-        if (e instanceof BadCredentialsError) {
-          this.errors = ["Usuário ou senha incorreta!"];
-        } else {
-          this.errors = ["Ocorreu um erro durante a autenticação"];
-        }
+          this.errors = ["Ocorreu um erro ao Enviar email"];
       });
   }
 
