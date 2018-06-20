@@ -1,14 +1,12 @@
 import { environment } from './../../../environments/environment';
-import { TokenDTO } from './../../dto/token-dto';
 import { BadCredentialsError } from './../../commons/bad-credentials';
-import { LoginDTO } from './../../dto/login-dto';
-import { AuthService } from './../../service/auth.service';
-import { UsuarioValidator } from './create-user.validators';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators, Form } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { HttpErrorResponse } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
+import { UserService } from '../../service/user.service';
+import { UserDTO } from '../../dto/user-dto';
+
 
 @Component({
   selector: 'create-user',
@@ -20,55 +18,107 @@ export class CreateUserComponent implements OnInit {
   form: FormGroup;
 
   hasInvitation : Boolean = false;
+  errors: Array<any> = [];
 
   constructor(
     private router: Router,
-    private authService: AuthService,
+    private userService: UserService,
     private route: ActivatedRoute,
     private toaster: ToastrService
   ) { }
 
   ngOnInit() {
     this.form = new FormGroup({
-      'usuario': new FormControl(
-        '',
-        [
-          Validators.minLength(4), Validators.required,
-          UsuarioValidator.temEspacosEmBranco
-        ]
-      ),
-      'senha': new FormControl('', [Validators.required])
+      'userName': new FormControl(null, {
+        validators: [
+          Validators.minLength(4), Validators.required
+        ],
+        updateOn: 'submit'
+      }),
+      'email': new FormControl(null, {
+        validators: [
+          Validators.minLength(4), Validators.required, Validators.email
+        ],
+        updateOn: 'submit'
+      }),
+      'password': new FormControl(null, {
+        validators: [
+          Validators.minLength(4), Validators.required
+        ],
+        updateOn: 'submit'
+      }),
+      'confirmPassword': new FormControl(null, {
+        validators: [
+          Validators.minLength(4), Validators.required
+        ],
+        updateOn: 'submit'
+      }),
+      'companyCode': new FormControl(null, {
+        validators: [
+          Validators.minLength(4), Validators.required
+        ],
+        updateOn: 'submit'
+      }),
+      'companyName': new FormControl(null, {
+        validators: [
+          Validators.minLength(4), Validators.required
+        ],
+        updateOn: 'submit'
+      }),
     });
   }
 
-  onSubmit(user: LoginDTO) {
-    this.authService.login(user).subscribe((token: TokenDTO) => {
-      localStorage.setItem(environment.tokenName, token.access_token);
+  onSubmit(user: any) {
+    //TODO verificar senhas iguais
+    /*if(this.form.invalid) {//TODO validacoes criacao de usuario
+      this.errors = [];
+      if(!this.form.controls.email.valid)
+        this.errors.push("Forneça um email válido!");
+      if(!this.form.controls.password.valid)
+        this.errors.push("Forneça uma senha válida!");
+      return;
+    }*/
 
-      const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
-      this.router.navigate([returnUrl || '/home']);
-
-      this.authService.refresh().subscribe(e => {
-        console.log(e);
-      });
-
-    },
+    let dto:any;
+    //TODO essa e a melhor forma de criar os dois tipos de DTO?
+    if(this.hasInvitation) {
+      delete user["companyName"];
+      delete user["confirmPassword"];
+      dto = user as UserDTO;//TODO tentar user o construtor
+    }else {
+      delete user["companyCode"];
+      delete user["confirmPassword"];
+      dto = user as UserDTO;
+    }
+    console.log(dto);
+    
+    /*
+    if(this.hasInvitation) {
+      this.userService.registerOnlyUser(dto).subscribe((token: CreateOnlyUserDTO) => {
+        const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
+        this.router.navigate([returnUrl || '/home']);  
+      },
       (e) => {
-        if (e instanceof BadCredentialsError) {
-          this.senha.setErrors({ 'invalido': true });
+        if (e instanceof BadCredentialsError) {//TODO verificar erros
+          this.password.setErrors({ 'invalido': true });
         } else {
           throw e;
         }
       });
-  }
-
-  get usuario() {
-    return this.form.get('usuario');
-  }
-
-
-  get senha() {
-    return this.form.get('senha');
+    }else {
+      this.createUserService.registerUserCompany(dto).subscribe((token: CreateUserCompanyDTO) => {
+        const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
+        this.router.navigate([returnUrl || '/home']);  
+      },
+      (e) => {
+        if (e instanceof BadCredentialsError) {//TODO verificar erros
+          this.password.setErrors({ 'invalido': true });
+        } else {
+          throw e;
+        }
+      });     
+    }
+     */
   }
 
 }

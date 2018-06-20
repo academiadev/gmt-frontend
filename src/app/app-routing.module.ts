@@ -21,9 +21,10 @@ const routes: Routes = [
       { path: ':token', component: CreateUserComponent } 
     ] 
   },
-  { path: 'trocar-senha', redirectTo: 'perdi-senha', pathMatch: 'full', canActivate: [LoginGuard] },
+  { path: 'trocar-senha', redirectTo: 'perdi-senha', pathMatch: 'full' },
   { path: 'trocar-senha/:codigo', component: ChangePasswordComponent, canActivate: [LoginGuard] },
   { path: 'perdi-senha', component: RequestPasswordComponent, canActivate: [LoginGuard] },
+  { path: 'perdi-senha-enviado', component: RequestPasswordComponent, canActivate: [LoginGuard] },
   { path: 'not-found', component: NotFoundComponent },
   {
     path: '', component: NavigationComponent, canActivate: [AuthGuard],
@@ -33,7 +34,7 @@ const routes: Routes = [
       { path: 'home', component: DashComponent, canActivate: [AuthGuard] },
     ]
   },
-  { path: '**', component: NotFoundComponent }
+  { path: '**', redirectTo: 'not-found', pathMatch: 'full' }
 ];
 
 @NgModule({
