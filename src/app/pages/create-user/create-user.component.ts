@@ -1,4 +1,3 @@
-import { CreateUserService } from './../../service/create-user-service';
 import { CreateOnlyUserDTO } from './../../dto/create-only-user-dto';
 import { CreateUserCompanyDTO } from './../../dto/create-user-company-dto';
 import { environment } from './../../../environments/environment';
@@ -6,14 +5,13 @@ import { TokenDTO } from './../../dto/token-dto';
 import { BadCredentialsError } from './../../commons/bad-credentials';
 import { LoginDTO } from './../../dto/login-dto';
 import { AuthService } from './../../service/auth.service';
-import { UsuarioValidator } from './create-user.validators';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators, Form } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { asElementData } from '@angular/core/src/view';
-
+import { CreateUserService } from '../../service/user.service';
 @Component({
   selector: 'create-user',
   templateUrl: './create-user.component.html',
