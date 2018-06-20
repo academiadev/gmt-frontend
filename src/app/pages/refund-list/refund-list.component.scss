@@ -10,8 +10,12 @@
   width: 3em;
 }
 
-.table th {
-  border-top: none;
+
+.table {
+  font-size: 14px;
+  th {
+    border-top: none;
+  }
 }
 
 .list-options {

@@ -1,3 +1,4 @@
+import { RefundDTO } from './../../dto/refund-dto';
 import { environment } from './../../../environments/environment';
 import { TokenDTO } from './../../dto/token-dto';
 import { BadCredentialsError } from './../../commons/bad-credentials';
@@ -17,8 +18,7 @@ import { ToastrService } from 'ngx-toastr';
 
 export class RefundListComponent implements OnInit {
   form: FormGroup;
-  submited: boolean = false;
-  errors: Array<any> = [];
+  refundList: Array<RefundDTO> = [];
 
   constructor(
     private router: Router,
@@ -28,56 +28,15 @@ export class RefundListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.form = new FormGroup({
-      'email': new FormControl(null, {
-        validators: [
-          Validators.minLength(4), Validators.required, Validators.email
-        ],
-        updateOn: 'submit'
-      }),
-      'password': new FormControl(null, {
-        validators: [Validators.required],
-        updateOn: 'submit'
-      })
-    });
+    this.refundList.push(new RefundDTO('Passeio', 50.49, 'Avaliação', 'Alimentação'))
+    this.refundList.push(new RefundDTO('Passeio', 50.49, 'Avaliação', 'Alimentação'))
+    this.refundList.push(new RefundDTO('Passeio', 50.49, 'Avaliação', 'Alimentação'))
+    this.refundList.push(new RefundDTO('Passeio', 50.49, 'Avaliação', 'Alimentação'))
   }
 
-  onSubmit(user: LoginDTO) {
-    if(this.form.invalid) {
-      this.errors = [];
-      if(!this.form.controls.email.valid)
-        this.errors.push("Forneça um email válido!");
-      if(!this.form.controls.password.valid)
-        this.errors.push("Forneça uma senha válida!");
-      return;
-    }
-    this.authService.login(user).subscribe((token: TokenDTO) => {
-      localStorage.setItem(environment.tokenName, token.access_token);
-
-      const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
-      this.router.navigate([returnUrl || '/home']);
-
-      this.authService.refresh().subscribe(e => {
-        console.log(e);
-      });
-
-    },
-      (e) => {
-        if (e instanceof BadCredentialsError) {
-          this.errors = ["Usuário ou senha incorreta!"];
-        } else {
-          this.errors = ["Ocorreu um erro durante a autenticação"];
-        }
-      });
+  ToggleCheckboxes(){
+    
   }
 
-  get usuario() {
-    return this.form.get('email');
-  }
-
-
-  get senha() {
-    return this.form.get('password');
-  }
 
 }

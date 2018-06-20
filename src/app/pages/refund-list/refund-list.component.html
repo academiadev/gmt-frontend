@@ -8,14 +8,16 @@
     <div class="card list-container">
         <h3 class="card-title text-center mt-0 mb-4">Reembolsos disponíveis</h3>
 
-        <table class="table table-hover">
+
+        <table class="table table-hover" *ngIf="refundList.length > 0; else empty_message">
             <thead>
                 <tr class="text-secondary">
                     <th scope="col" class="checkbox-column">
                         <div class="form-check">
-                            <input class="form-check-input position-static" type="checkbox" value="option1">
+                            <input class="form-check-input position-static" type="checkbox" id="header-checkbox" >
                         </div>
                     </th>
+                    <th scope="col">Reembolso</th>
                     <th scope="col" class="text-center">Status</th>
                     <th scope="col">Valor</th>
                     <th scope="col">Categoria</th>
@@ -23,31 +25,24 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                <tr *ngFor="let refund of refundList; let i = index">
                     <td>
                         <div class="form-check">
-                            <input class="form-check-input position-static" type="checkbox" value="option1">
+                            <input class="form-check-input position-static" [attr.checkbox-index]="i" type="checkbox">
                         </div>
                     </td>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>@mdo</td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="form-check">
-                            <input class="form-check-input position-static" type="checkbox" value="option1">
-                        </div>
-                    </td>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>@mdo</td>
+                    <td>{{ refund.titulo }}</td>
+                    <td>{{ refund.status }}</td>
+                    <td>R$ {{ refund.valor }}</td>
+                    <td>{{ refund.categoria }}</td>
+                    <td>anonimo</td>
                 </tr>
             </tbody>
         </table>
 
+        <ng-template #empty_message>
+            <h4 class="text-center mt-5 mb-5">Não foram encontrados reembolsos</h4>
+        </ng-template>
         <div class="row no-gutters">
             <div class="col-9">
                 <button type="button" class="btn btn-primary btn-lg">Criar Reembolso</button>
