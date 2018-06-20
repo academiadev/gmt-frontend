@@ -7,7 +7,6 @@ import { ToastrService } from 'ngx-toastr';
 import { UserService } from '../../service/user.service';
 import { UserDTO } from '../../dto/user-dto';
 
-
 @Component({
   selector: 'create-user',
   templateUrl: './create-user.component.html',
@@ -16,8 +15,7 @@ import { UserDTO } from '../../dto/user-dto';
 
 export class CreateUserComponent implements OnInit {
   form: FormGroup;
-
-  hasInvitation : Boolean = false;
+  hasInvitation: Boolean = false;
   errors: Array<any> = [];
 
   constructor(
@@ -27,6 +25,8 @@ export class CreateUserComponent implements OnInit {
     private toaster: ToastrService
   ) { }
 
+  //criar page de validador para veriricar o email,
+  //verificar o nivel da senha, verificar se as senhas sao iguais
   ngOnInit() {
     this.form = new FormGroup({
       'userName': new FormControl(null, {
@@ -53,6 +53,9 @@ export class CreateUserComponent implements OnInit {
         ],
         updateOn: 'submit'
       }),
+      'radio': new FormControl(null, {
+        updateOn: 'submit'
+      }),
       'companyCode': new FormControl(null, {
         validators: [
           Validators.minLength(4), Validators.required
@@ -69,29 +72,24 @@ export class CreateUserComponent implements OnInit {
   }
 
   onSubmit(user: any) {
-    //TODO verificar senhas iguais
-    /*if(this.form.invalid) {//TODO validacoes criacao de usuario
+    //colocar validador de senha
+    //validador de email
+    if (this.form.invalid) {//TODO validacoes criacao de usuario
+      console.log('tese');
       this.errors = [];
-      if(!this.form.controls.email.valid)
+      if (!this.form.controls.email.valid)
         this.errors.push("Forneça um email válido!");
-      if(!this.form.controls.password.valid)
+      if (!this.form.controls.password.valid)
         this.errors.push("Forneça uma senha válida!");
       return;
-    }*/
-
-    let dto:any;
-    //TODO essa e a melhor forma de criar os dois tipos de DTO?
-    if(this.hasInvitation) {
-      delete user["companyName"];
-      delete user["confirmPassword"];
-      dto = user as UserDTO;//TODO tentar user o construtor
-    }else {
-      delete user["companyCode"];
-      delete user["confirmPassword"];
-      dto = user as UserDTO;
     }
-    console.log(dto);
-    
+
+    let userDTO: any;
+    if (this.hasInvitation) {
+      userDTO = user as UserDTO;//TODO tentar user o construtor
+    }
+    console.log(userDTO);
+
     /*
     if(this.hasInvitation) {
       this.userService.registerOnlyUser(dto).subscribe((token: CreateOnlyUserDTO) => {
