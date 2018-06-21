@@ -46,7 +46,7 @@ export class ChangePasswordComponent implements OnInit {
         this.errors.push("Senha Invalida!");
       return;
     }
-    if(UserValidators.confirmPassowrds(this.form)){
+    if (UserValidators.confirmPassowrds(this.form)) {
       this.errors.push("Senhas não coincidem!");
       return;
     }
@@ -58,16 +58,13 @@ export class ChangePasswordComponent implements OnInit {
     },
       (e) => {
         if (e instanceof BadCredentialsError) {
-          this.password.setErrors({ 'invalido': true });
-        } 
-        else {
-          throw e;
+          this.errors = ["Acesso nao autorizado!"];
+        } else {
+          this.errors = ["Ocorreu um erro durante a autenticação"];
         }
       });
   }
 
-  get password() {
-    return this.form.get('newPassword');
-  }
+
 
 }

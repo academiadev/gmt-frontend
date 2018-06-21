@@ -15,7 +15,7 @@ export const environment = {
         },
         password: {
             request: backEndUrl + '/password/request',
-            change: backEndUrl + '/password/chage',
+            change: backEndUrl + '/auth/change-password',
         },
         user: {
             user: backEndUrl + '/user',
