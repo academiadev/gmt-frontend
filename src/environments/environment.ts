@@ -18,10 +18,8 @@ export const environment = {
             change: backEndUrl + '/password/chage',
         },
         user: {
-            url: backEndUrl + '/user',
-        },
-        company: {
-            url: backEndUrl + '/company',
+            user: backEndUrl + '/user',
+            company: backEndUrl + '/company',
         },
         refund: {
             url: backEndUrl + '/refund',

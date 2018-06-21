@@ -1,10 +1,16 @@
-import { AbstractControl } from '@angular/forms';
+import { AbstractControl, FormGroup } from '@angular/forms';
 import { ValidationErrors } from '@angular/forms';
-import { Observable } from 'rxjs/internal/Observable';
 
+export class UserValidators {
 
-
-export class UsuarioValidator {
+    static confirmPassowrds(formGroup: FormGroup): ValidationErrors | boolean {
+        const password: string = formGroup.controls.password.value;
+        const confPassword: string = formGroup.controls.confPassword.value;
+        if (password != confPassword) {
+            return { confirmPassowrds: true }
+        }
+        return false;
+    }
 
     static temEspacosEmBranco(control: AbstractControl): ValidationErrors | null {
         const valorDoCampo: string = control.value;
@@ -25,4 +31,5 @@ export class UsuarioValidator {
             }, 2000);
         });
     }
+
 }

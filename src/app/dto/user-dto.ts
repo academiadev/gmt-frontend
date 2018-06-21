@@ -5,7 +5,7 @@ export class UserDTO {
         private name ?: string,
         private email ?: string,
         private password ?: string,
-        private code ?: string
+        private company ?: string,
     ) { }
 
 }

@@ -1,3 +1,4 @@
+import { RequestPasswordSentComponent } from './pages/request-password-sent/request-password-sent.component';
 import { ChangePasswordComponent } from './pages/change-password/change-password.component';
 import { CreateUserComponent } from './pages/create-user/create-user.component';
 import { CompanyComponent } from './pages/company/company.component';
@@ -24,7 +25,7 @@ const routes: Routes = [
   { path: 'trocar-senha', redirectTo: 'perdi-senha', pathMatch: 'full' },
   { path: 'trocar-senha/:codigo', component: ChangePasswordComponent, canActivate: [LoginGuard] },
   { path: 'perdi-senha', component: RequestPasswordComponent, canActivate: [LoginGuard] },
-  { path: 'perdi-senha-enviado', component: RequestPasswordComponent, canActivate: [LoginGuard] },
+  { path: 'perdi-senha-enviado', component: RequestPasswordSentComponent, canActivate: [LoginGuard] },
   { path: 'not-found', component: NotFoundComponent },
   {
     path: '', component: NavigationComponent, canActivate: [AuthGuard],

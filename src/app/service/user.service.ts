@@ -15,46 +15,39 @@ import { ChangePasswordDTO } from '../dto/change-password-dto';
 export class UserService extends DataService {
 
   constructor(http: HttpClient) {
-    super(environment.urls.user.url, http);
+    super(environment.urls.user.user, http);
   }
 
   /**
-* //TODO ainda tem q ver como vai fazer isso no backend
-* @url http://localhost:8080/auth/user
-*/
-  //colocar pra receber a resposta do servidor, pois ele n retorna um dto
-  registerUser(user: UserDTO): Observable<UserDTO> {
+  * @url http://localhost:8080/auth/user
+  */
+
+  registerUser(user: UserDTO): Observable<Response> {
     //console.log("Registro de usuario apenas:"+user);
-    return this.http.post(environment.urls.user.url, user).pipe(
-      map(res => <UserDTO>res),
+    return this.http.post(environment.urls.user.user, user).pipe(
+      map(res => <Response>res),
       catchError(this.handleError)
     );
   }
 
-  //tem q devolver um token pra cadastrar o usuario como admin
-  registerCompany(name: string): Observable<TokenDTO> {
-    return this.http.post(environment.urls.company.url, name).pipe(
-      map(res => <TokenDTO>res),
+  registerUserCompany(user: UserDTO): Observable<Response> {
+    return this.http.post(environment.urls.user.company, user).pipe(
+      map(res => <Response>res),
       catchError(this.handleError)
     );
   }
 
-  //Mudar a rota nos environments 
-  requestPassword(email: String): Observable<boolean> {
+  requestPassword(email: String): Observable<Response> {
     return this.http.post(environment.urls.password.request, email).pipe(
-      map(res => <boolean>res),
+      map(res => <Response>res),
       catchError(this.handleError)
     );
   }
 
-  changePassword(passwords: ChangePasswordDTO): Observable<boolean> {
+  changePassword(passwords: ChangePasswordDTO): Observable<Response> {
     return this.http.post(environment.urls.password.change, passwords).pipe(
-      map(res => <boolean>res),
+      map(res => <Response>res),
       catchError(this.handleError)
     );
   }
-
-
-
-
 }

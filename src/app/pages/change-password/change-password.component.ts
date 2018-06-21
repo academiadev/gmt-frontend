@@ -1,14 +1,10 @@
-import { environment } from './../../../environments/environment';
-import { TokenDTO } from './../../dto/token-dto';
+import { UserValidators } from './../../validators/user.validators';
+import { ChangePasswordDTO } from './../../dto/change-password-dto';
 import { BadCredentialsError } from './../../commons/bad-credentials';
-import { LoginDTO } from './../../dto/login-dto';
-import { AuthService } from './../../service/auth.service';
-import { UsuarioValidator } from './create-user.validators';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { HttpErrorResponse } from '@angular/common/http';
-import { ToastrService } from 'ngx-toastr';
+import { UserService } from '../../service/user.service';
 
 @Component({
   selector: 'change-password',
@@ -18,55 +14,60 @@ import { ToastrService } from 'ngx-toastr';
 
 export class ChangePasswordComponent implements OnInit {
   form: FormGroup;
+  errors: Array<any> = [];
 
   constructor(
     private router: Router,
-    private authService: AuthService,
+    private userService: UserService,
     private route: ActivatedRoute,
-    private toaster: ToastrService
   ) { }
 
   ngOnInit() {
     this.form = new FormGroup({
-      'usuario': new FormControl(
-        '',
+      'password': new FormControl('',
         [
           Validators.minLength(4), Validators.required,
-          UsuarioValidator.temEspacosEmBranco
-        ]
-      ),
-      'senha': new FormControl('', [Validators.required])
+          UserValidators.temEspacosEmBranco
+        ]),
+      'confPassword': new FormControl('',
+        [
+          Validators.minLength(4), Validators.required,
+          UserValidators.temEspacosEmBranco
+        ]),
     });
   }
 
-  onSubmit(user: LoginDTO) {
-    this.authService.login(user).subscribe((token: TokenDTO) => {
-      localStorage.setItem(environment.tokenName, token.access_token);
+  onSubmit(password: ChangePasswordDTO) {
+    this.errors = [];
+    if (this.form.invalid) {
+      if (!this.form.controls.newPassword.valid)
+        this.errors.push("Senha Invalida!");
+      if (!this.form.controls.confirmNewPassword.valid)
+        this.errors.push("Senha Invalida!");
+      return;
+    }
+    if(UserValidators.confirmPassowrds(this.form)){
+      this.errors.push("Senhas não coincidem!");
+      return;
+    }
 
+    this.userService.changePassword(password).subscribe((respose: Response) => {
+      console.log(respose);
       const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
       this.router.navigate([returnUrl || '/home']);
-
-      this.authService.refresh().subscribe(e => {
-        console.log(e);
-      });
-
     },
       (e) => {
         if (e instanceof BadCredentialsError) {
-          this.senha.setErrors({ 'invalido': true });
-        } else {
+          this.password.setErrors({ 'invalido': true });
+        } 
+        else {
           throw e;
         }
       });
   }
 
-  get usuario() {
-    return this.form.get('usuario');
-  }
-
-
-  get senha() {
-    return this.form.get('senha');
+  get password() {
+    return this.form.get('newPassword');
   }
 
 }

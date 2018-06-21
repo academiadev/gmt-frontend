@@ -25,8 +25,9 @@ export class CreateUserComponent implements OnInit {
     private toaster: ToastrService
   ) { }
 
-  //criar page de validador para veriricar o email,
-  //verificar o nivel da senha, verificar se as senhas sao iguais
+  //Add ao validator:
+  //verificar o email;
+  //O nivel da senha;
   ngOnInit() {
     this.form = new FormGroup({
       'userName': new FormControl(null, {
@@ -47,48 +48,68 @@ export class CreateUserComponent implements OnInit {
         ],
         updateOn: 'submit'
       }),
-      'confirmPassword': new FormControl(null, {
+      'confPassword': new FormControl(null, {
         validators: [
           Validators.minLength(4), Validators.required
         ],
-        updateOn: 'submit'
-      }),
-      'radio': new FormControl(null, {
         updateOn: 'submit'
       }),
       'companyCode': new FormControl(null, {
-        validators: [
-          Validators.minLength(4), Validators.required
-        ],
+        validators: [],
         updateOn: 'submit'
       }),
       'companyName': new FormControl(null, {
-        validators: [
-          Validators.minLength(4), Validators.required
-        ],
+        validators: [],
         updateOn: 'submit'
       }),
     });
   }
 
-  onSubmit(user: any) {
+  onSubmit(user: UserDTO) {
     //colocar validador de senha
     //validador de email
     if (this.form.invalid) {//TODO validacoes criacao de usuario
-      console.log('tese');
       this.errors = [];
+      if (!this.form.controls.userName.valid)
+        this.errors.push("Forneça um userName válido!");
       if (!this.form.controls.email.valid)
         this.errors.push("Forneça um email válido!");
       if (!this.form.controls.password.valid)
-        this.errors.push("Forneça uma senha válida!");
+        this.errors.push("Forneça um password válido!");
+      if (!this.form.controls.confPassword.valid)
+        this.errors.push("Forneça um confPassword válido!");
       return;
     }
 
-    let userDTO: any;
     if (this.hasInvitation) {
-      userDTO = user as UserDTO;//TODO tentar user o construtor
+      this.userService.registerUserCompany(user).subscribe((response: Response) => {
+        console.log(response);
+        const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
+        this.router.navigate([returnUrl || '/loin']);
+      }, (e) => {
+        if (e instanceof BadCredentialsError) { 
+          this.form.setErrors({ 'invalido': true });
+        } else {
+          throw e;
+        }
+      });
+
     }
-    console.log(userDTO);
+    else {
+      this.userService.registerUser(user).subscribe((response: Response) => {
+        console.log(response);
+        const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
+        this.router.navigate([returnUrl || '/loin']);
+      }, (e) => {
+        if (e instanceof BadCredentialsError) { 
+          this.form.setErrors({ 'invalido': true });
+        } else {
+          throw e;
+        }
+      });
+    }
+
+
 
     /*
     if(this.hasInvitation) {
