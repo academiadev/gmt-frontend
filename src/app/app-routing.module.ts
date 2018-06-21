@@ -2,7 +2,7 @@ import { ChangePasswordComponent } from './pages/change-password/change-password
 import { CreateUserComponent } from './pages/create-user/create-user.component';
 import { CompanyComponent } from './pages/company/company.component';
 import { CompanyEditComponent } from './pages/company-edit/company-edit.component';
-import { DashComponent } from './pages/dash/dash.component';
+import { DashComponent } from './components/dash/dash.component';
 import { LoginComponent } from './pages/login/login.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { NgModule, Component } from '@angular/core';

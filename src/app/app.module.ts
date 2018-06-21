@@ -1,8 +1,8 @@
 import { ChangePasswordComponent } from './pages/change-password/change-password.component';
 import { CreateUserComponent } from './pages/create-user/create-user.component';
-import { NavbarComponent } from './pages/navbar/navbar.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
-import { DashComponent } from './pages/dash/dash.component';
+import { DashComponent } from './components/dash/dash.component';
 import { LoginComponent } from './pages/login/login.component';
 import { CompanyComponent } from './pages/company/company.component';
 import { CompanyEditComponent } from './pages/company-edit/company-edit.component';
@@ -25,6 +25,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RequestPasswordComponent } from './pages/request-password/request-password.component';
+import { LoginCardComponent } from './components/login-card/login-card.component';
 
 export function tokenGetter() {
   const token = localStorage.getItem(environment.tokenName);
@@ -43,7 +44,8 @@ export function tokenGetter() {
     CompanyComponent,
     CompanyEditComponent,
     RequestPasswordComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    LoginCardComponent
   ],
   imports: [
     FormsModule,
