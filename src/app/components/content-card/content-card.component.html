@@ -1,0 +1,15 @@
+<navbar></navbar>
+
+<div class="card content-card">
+    <ngb-alert type="danger" *ngIf="errors.length > 0" (close)="errors=[]">
+        <ul class="alert-list" >
+            <li *ngFor="let error of errors">{{ error }}</li>
+        </ul>
+    </ngb-alert>
+    <div class="card-body">
+        <h4 class="card-title text-center mt-0 mb-4"><ng-content select="[title]"></ng-content></h4>
+        <ng-content select="[body]"></ng-content>
+    </div>
+</div>
+
+<pageFooter></pageFooter>

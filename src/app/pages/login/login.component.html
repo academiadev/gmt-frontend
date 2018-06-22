@@ -1,44 +1,23 @@
-<div class="card login-container">
-    <ngb-alert type="danger" *ngIf="errors.length > 0" (close)="errors=[]">
-        <ul class="alert-list" >
-            <li *ngFor="let error of errors">{{ error }}</li>
-        </ul>
-    </ngb-alert>
-    <div class="card-body">
-        <h4 class="card-title text-center mt-0 mb-4">Reembolso ContaAzul</h4>
+<loginCard [errors]="errors">
+    <div title>Reembolso ContaAzul</div>
 
-        <form class="form-signin" [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
-            <div class="row mt-3 mb-3">
-                <input formControlName="email" type="email" id="inputEmail" class="login-control" placeholder="Email" required autofocus>
-            </div>
-
-            <div class="row mt-3 mb-3">
-                <input formControlName="password" type="password" id="inputPassword" class="login-control" placeholder="Senha" required>
-            </div>
-
-            <div class="row mt-4 mb-4">
-                <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
-            </div>
-            <div class="login-links row justify-content-between">
-                <div class="col-6"><a [routerLink]="['/perdi-senha']" class="no-style">Esqueceu sua senha?</a></div>
-                <div class="col-5 text-right"><a [routerLink]="['/registrar']" class="no-style">Quero me cadastrar</a></div>
-            </div>
-
-        </form>
-    </div>
-</div>
-
-<footer id="floating-footer">
-    <div class="row">
-        <div class="col-5">
-            Desenvolvido por uma galera top
+    <div body>
+    <form class="form-signin" [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+        <div class="row mt-3 mb-3">
+            <input formControlName="email" type="email" id="inputEmail" class="login-control" placeholder="Email" required autofocus>
         </div>
-        <div class="col-3">
+
+        <div class="row mt-3 mb-3">
+            <input formControlName="password" type="password" id="inputPassword" class="login-control" placeholder="Senha" required>
         </div>
-        <div class="col-4">
-            <h5>Patrocinadores:</h5>
-            <div>ContaAzul</div>
-            <div>Code:Nation</div>
+
+        <div class="row mt-4 mb-4">
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
         </div>
-    </div>
-</footer>
+        <div class="login-links row justify-content-between">
+            <div class="col-6"><a [routerLink]="['/perdi-senha']" class="no-style">Esqueceu sua senha?</a></div>
+            <div class="col-6 text-right"><a [routerLink]="['/registrar']" class="no-style">Quero me cadastrar</a></div>
+        </div>
+    </form>
+    </div> 
+</loginCard>

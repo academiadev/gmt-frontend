@@ -1,0 +1,17 @@
+footer{
+  padding: 1em 2em 1em 4em;
+  margin: 0 auto;
+  margin-top: 2em;
+  width: 35em;
+  border-top: 1px solid #e5e5e5;
+}
+
+.patrocinadores {
+  font-size: 16px;
+  padding: 0;
+  margin-left: 1em;
+  list-style: disclosure-closed;
+  li {
+    padding-top: 0.3em;
+  }
+}
