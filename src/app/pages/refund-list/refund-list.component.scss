@@ -1,15 +1,6 @@
-.list-wrapper {
-  margin: 0 auto;
-  min-width: 400px;
-  max-width: 700px;
-  margin-top: 8em;
-  margin-bottom: 5em;
-}
-
 .table .checkbox-column {
   width: 3em;
 }
-
 
 .table {
   font-size: 14px;
@@ -18,31 +9,10 @@
   }
 }
 
-.list-options {
-  margin: 0 20px 10px 20px;
+.optional-btn {
+  margin: 0 20px;
   .btn {
     margin-right: 10px;
   }
-}
-
-.list-container {
-  border-radius: 4px;
-  background-color: #F1F4F9;
-  padding: 20px;
-  font-size: 14px;
-}
-
-.alert-list {
-  font-size: 14px;
-  padding: 0 0 0 20px;
-  margin: 0;
-}
-
-#floating-footer{
-  padding: 1em 2em 1em 4em;
-  margin: 0 auto;
-  margin-top: 2em;
-  max-width: 40em;
-  border-top: 1px solid #e5e5e5;
 }
 

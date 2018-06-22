@@ -1,0 +1,22 @@
+<navbar></navbar>
+
+<div class="card-wrapper">
+    <div class="pre-card">
+        <div class="row no-gutters">
+            <ng-content select="[before]"></ng-content>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title text-center mt-0 mb-4"><ng-content select="[title]"></ng-content></h4>
+            <ng-content select="[body]"></ng-content>
+        </div>
+    </div>
+    <div class="post-card">
+        <div class="row no-gutters">
+            <ng-content select="[after]"></ng-content>
+        </div>
+    </div>
+</div>
+
+<pageFooter></pageFooter>

@@ -1,20 +1,18 @@
-<div class="list-wrapper">
-    <div class="list-options">
-        <div class="row no-gutters">
-            <button type="button" class="btn btn-success btn-lg">Aprovar</button>
-            <button type="button" class="btn btn-danger btn-lg">Recusar</button>
-        </div>
+<contentCard>
+    <div class="optional-btn" before>
+        <button type="button" class="btn btn-success btn-lg">Aprovar</button>
+        <button type="button" class="btn btn-danger btn-lg">Recusar</button>
     </div>
-    <div class="card list-container">
-        <h3 class="card-title text-center mt-0 mb-4">Reembolsos disponíveis</h3>
 
+    <div title>Reembolsos disponíveis</div>
 
+    <div body>
         <table class="table table-hover" *ngIf="refundList.length > 0; else empty_message">
             <thead>
                 <tr class="text-secondary">
                     <th scope="col" class="checkbox-column">
                         <div class="form-check">
-                            <input class="form-check-input position-static" type="checkbox" id="header-checkbox" >
+                            <input class="form-check-input position-static" type="checkbox" id="header-checkbox">
                         </div>
                     </th>
                     <th scope="col">Reembolso</th>
@@ -52,19 +50,4 @@
             </div>
         </div>
     </div>
-</div>
-
-<footer id="floating-footer">
-    <div class="row">
-        <div class="col-5">
-            Desenvolvido por uma galera top
-        </div>
-        <div class="col-3">
-        </div>
-        <div class="col-4">
-            <h5>Patrocinadores:</h5>
-            <div>ContaAzul</div>
-            <div>Code:Nation</div>
-        </div>
-    </div>
-</footer>
+</contentCard>
