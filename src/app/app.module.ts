@@ -26,6 +26,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RequestPasswordComponent } from './pages/request-password/request-password.component';
 import { LoginCardComponent } from './components/login-card/login-card.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 export function tokenGetter() {
   const token = localStorage.getItem(environment.tokenName);
@@ -45,7 +46,8 @@ export function tokenGetter() {
     CompanyEditComponent,
     RequestPasswordComponent,
     ChangePasswordComponent,
-    LoginCardComponent
+    LoginCardComponent,
+    FooterComponent
   ],
   imports: [
     FormsModule,
