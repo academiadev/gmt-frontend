@@ -32,4 +32,16 @@ export class UserValidators {
         });
     }
 
+    static requestEmail(control: string): Promise<ValidationErrors> | null {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                if (control === 'bnubruno') {
+                    resolve({ jaExisteP: true });
+                } else {
+                    resolve(null);
+                }
+            }, 2000);
+        });
+    }
+
 }

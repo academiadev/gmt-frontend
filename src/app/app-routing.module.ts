@@ -23,7 +23,7 @@ const routes: Routes = [
     ] 
   },
   { path: 'trocar-senha', redirectTo: 'perdi-senha', pathMatch: 'full' },
-  { path: 'trocar-senha/:codigo', component: ChangePasswordComponent, canActivate: [LoginGuard] },
+  { path: 'trocar-senha/:**', component: ChangePasswordComponent, canActivate: [LoginGuard] },
   { path: 'perdi-senha', component: RequestPasswordComponent, canActivate: [LoginGuard] },
   { path: 'perdi-senha-enviado', component: RequestPasswordSentComponent, canActivate: [LoginGuard] },
   { path: 'not-found', component: NotFoundComponent },

@@ -19,6 +19,7 @@ export const environment = {
         },
         user: {
             user: backEndUrl + '/user',
+            email: backEndUrl + '/email',
             company: backEndUrl + '/company',
         },
         refund: {

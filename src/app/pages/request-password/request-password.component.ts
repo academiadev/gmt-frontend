@@ -1,11 +1,6 @@
-import { environment } from './../../../environments/environment';
-import { BadCredentialsError } from './../../commons/bad-credentials';
-import { AuthService } from './../../service/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { HttpErrorResponse } from '@angular/common/http';
-import { ToastrService } from 'ngx-toastr';
 import { UserService } from '../../service/user.service';
 
 
@@ -22,10 +17,8 @@ export class RequestPasswordComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private authService: AuthService,
     private userService: UserService,
     private route: ActivatedRoute,
-    private toaster: ToastrService
   ) { }
 
   ngOnInit() {
@@ -54,11 +47,7 @@ export class RequestPasswordComponent implements OnInit {
     },
       (e) => {
         this.errors = ["Ocorreu um erro ao Enviar email"];
-        throw e;
       });
   }
 
-  get email() {
-    return this.form.get('email');
-  }
 }

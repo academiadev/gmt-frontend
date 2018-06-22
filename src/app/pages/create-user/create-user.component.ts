@@ -6,6 +6,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from '../../service/user.service';
 import { UserDTO } from '../../dto/user-dto';
+import { UserValidators } from '../../validators/user.validators';
 
 @Component({
   selector: 'create-user',
@@ -30,28 +31,20 @@ export class CreateUserComponent implements OnInit {
   //O nivel da senha;
   ngOnInit() {
     this.form = new FormGroup({
-      'userName': new FormControl(null, {
-        validators: [
-          Validators.minLength(4), Validators.required
-        ],
+      'name': new FormControl(null, {
+        validators: [ Validators.minLength(4), Validators.required ],
         updateOn: 'submit'
       }),
       'email': new FormControl(null, {
-        validators: [
-          Validators.minLength(4), Validators.required, Validators.email
-        ],
+        validators: [ Validators.minLength(4), Validators.required, Validators.email ],
         updateOn: 'submit'
       }),
       'password': new FormControl(null, {
-        validators: [
-          Validators.minLength(4), Validators.required
-        ],
+        validators: [ Validators.minLength(4), Validators.required ],
         updateOn: 'submit'
       }),
       'confPassword': new FormControl(null, {
-        validators: [
-          Validators.minLength(4), Validators.required
-        ],
+        validators: [ Validators.minLength(4), Validators.required ],
         updateOn: 'submit'
       }),
       'companyCode': new FormControl(null, {
@@ -66,31 +59,40 @@ export class CreateUserComponent implements OnInit {
   }
 
   onSubmit(user: UserDTO) {
-    //colocar validador de senha
-    //validador de email
-    if (this.form.invalid) {//TODO validacoes criacao de usuario
+    if (this.form.invalid) {
       this.errors = [];
-      if (!this.form.controls.userName.valid)
-        this.errors.push("Forneça um userName válido!");
+      if (!this.form.controls.name.valid)
+        this.errors.push("Forneça um nome válido!");
       if (!this.form.controls.email.valid)
         this.errors.push("Forneça um email válido!");
       if (!this.form.controls.password.valid)
         this.errors.push("Forneça um password válido!");
       if (!this.form.controls.confPassword.valid)
-        this.errors.push("Forneça um confPassword válido!");
+        this.errors.push("Forneça um Password válido!");
       return;
     }
+
+    //validador de email
+    if (UserValidators.confirmPassowrds(this.form)) {
+      this.errors.push("Senhas não coincidem!");
+      return;
+    }
+
+    // if (UserValidators.requestEmail('')) {
+    //   this.errors.push("Senhas não coincidem!");
+    //   return;
+    // }
 
     if (this.hasInvitation) {
       this.userService.registerUserCompany(user).subscribe((response: Response) => {
         console.log(response);
         const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
-        this.router.navigate([returnUrl || '/loin']);
+        this.router.navigate([returnUrl || '/login']);
       }, (e) => {
         if (e instanceof BadCredentialsError) { 
           this.form.setErrors({ 'invalido': true });
         } else {
-          throw e;
+          this.errors = ["Ocorreu um erro durante a autenticação"];
         }
       });
 
@@ -99,12 +101,12 @@ export class CreateUserComponent implements OnInit {
       this.userService.registerUser(user).subscribe((response: Response) => {
         console.log(response);
         const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
-        this.router.navigate([returnUrl || '/loin']);
+        this.router.navigate([returnUrl || '/login']);
       }, (e) => {
         if (e instanceof BadCredentialsError) { 
           this.form.setErrors({ 'invalido': true });
         } else {
-          throw e;
+          this.errors = ["Ocorreu um erro durante a autenticação"];
         }
       });
     }

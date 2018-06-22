@@ -1,8 +1,7 @@
 import { UserValidators } from './../../validators/user.validators';
-import { ChangePasswordDTO } from './../../dto/change-password-dto';
 import { BadCredentialsError } from './../../commons/bad-credentials';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators, Form } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from '../../service/user.service';
 
@@ -37,12 +36,12 @@ export class ChangePasswordComponent implements OnInit {
     });
   }
 
-  onSubmit(password: ChangePasswordDTO) {
+  onSubmit(password: string) {
     this.errors = [];
     if (this.form.invalid) {
-      if (!this.form.controls.newPassword.valid)
+      if (!this.form.controls.password.valid)
         this.errors.push("Senha Invalida!");
-      if (!this.form.controls.confirmNewPassword.valid)
+      if (!this.form.controls.confPassword.valid)
         this.errors.push("Senha Invalida!");
       return;
     }
@@ -54,7 +53,7 @@ export class ChangePasswordComponent implements OnInit {
     this.userService.changePassword(password).subscribe((respose: Response) => {
       console.log(respose);
       const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
-      this.router.navigate([returnUrl || '/home']);
+      this.router.navigate([returnUrl || '/login']);
     },
       (e) => {
         if (e instanceof BadCredentialsError) {
