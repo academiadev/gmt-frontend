@@ -1,6 +1,6 @@
 <navbar></navbar>
 
-<div class="card login-container">
+<div class="card content-card">
     <ngb-alert type="danger" *ngIf="errors.length > 0" (close)="errors=[]">
         <ul class="alert-list" >
             <li *ngFor="let error of errors">{{ error }}</li>

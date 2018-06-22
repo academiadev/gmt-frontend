@@ -7,7 +7,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { NavigationComponent } from './navigation/navigation.component';
+import { NavigationComponent } from './components/navigation/navigation.component';
 import { AuthGuard } from './service/auth-guard.service';
 import { LoginGuard } from './service/login-guard.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
