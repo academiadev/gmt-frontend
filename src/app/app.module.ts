@@ -1,4 +1,3 @@
-import { RequestPasswordSentComponent } from './pages/request-password-sent/request-password-sent.component';
 import { ChangePasswordComponent } from './pages/change-password/change-password.component';
 import { CreateUserComponent } from './pages/create-user/create-user.component';
 import { NavbarComponent } from './pages/navbar/navbar.component';
@@ -44,7 +43,6 @@ export function tokenGetter() {
     CompanyComponent,
     CompanyEditComponent,
     RequestPasswordComponent,
-    RequestPasswordSentComponent,
     ChangePasswordComponent
   ],
   imports: [
