@@ -1,8 +1,10 @@
+import { CreateRefundComponent } from './components/refund-modal/create/create-modal.component';
+import { ViewRefundComponent } from './components/refund-modal/view/view-modal.component';
+import { RefundModalComponent } from './components/refund-modal/refund-modal.component';
 import { ChangePasswordComponent } from './pages/change-password/change-password.component';
 import { CreateUserComponent } from './pages/create-user/create-user.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
-import { DashComponent } from './components/dash/dash.component';
 import { LoginComponent } from './pages/login/login.component';
 import { CompanyComponent } from './pages/company/company.component';
 import { CompanyEditComponent } from './pages/company-edit/company-edit.component';
@@ -13,7 +15,6 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@angular/cdk/layout';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { NavigationComponent } from './components/navigation/navigation.component';
 import { AppErrorHandler } from './commons/app-error-handler';
 import { AuthGuard } from './service/auth-guard.service';
 import { AuthService } from './service/auth.service';
@@ -39,11 +40,9 @@ export function tokenGetter() {
   declarations: [
     AppComponent,
     NavbarComponent,
-    DashComponent,
     NotFoundComponent,
     LoginComponent,
     CreateUserComponent,
-    NavigationComponent,
     CompanyComponent,
     CompanyEditComponent,
     RequestPasswordComponent,
@@ -51,7 +50,10 @@ export function tokenGetter() {
     LoginCardComponent,
     FooterComponent,
     RefundListComponent,
-    ContentCardComponent
+    ContentCardComponent,
+    RefundModalComponent,
+    ViewRefundComponent,
+    CreateRefundComponent
   ],
   imports: [
     FormsModule,
@@ -83,6 +85,7 @@ export function tokenGetter() {
     AuthGuard,
     { provide: ErrorHandler, useClass: AppErrorHandler }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ RefundModalComponent, CreateRefundComponent ]
 })
 export class AppModule { }

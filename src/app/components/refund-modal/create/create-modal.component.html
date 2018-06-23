@@ -1,0 +1,43 @@
+<RefundModal title="Solicitar Reembolso">
+    <div main>
+        <p>Preencha as informações abaixo para solicitar reembolso:</p>
+        <form class="modal-form">
+            <div class="row mt-1 mb-1">
+                <div class="col-12">
+                    <label for="input-titulo">Título</label>
+                    <input type="text" id="input-titulo" placeholder="Ex: Viagem para Bahia" required>
+                </div>
+            </div>
+
+            <div class="row mt-1 mb-1">
+                <div class="col-6">
+                    <label for="input-categoria">Categoria</label>
+                    <input type="text" id="input-categoria" placeholder="Ex: A implementar" required>
+                </div>
+                <div class="col-6">
+                    <label for="input-data">Data</label>
+                    <div class="input-group">
+                        <input id="input-data" class="input-group-text" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #dp="ngbDatepicker">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" (click)="dp.toggle()" type="button">
+                            <img src="assets/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-1 mb-1">
+                <div class="col-6">
+                    <label for="input-valor">Valor</label>
+                    <input type="text" id="input-valor" placeholder="Ex: 49,90" required>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div footer>
+        <button type="button" class="btn btn-secondary" (click)="activeModal.close('Close click')">Cancelar</button>
+        <button type="button" class="btn btn-primary" (click)="activeModal.close('Close click')">Enviar</button>
+    </div>
+</RefundModal>
+    

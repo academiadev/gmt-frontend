@@ -6,27 +6,18 @@
   margin-bottom: 5em;
 }
 
-.table .checkbox-column {
-  width: 3em;
-}
-
-
-.table {
-  font-size: 14px;
-  th {
-    border-top: none;
-  }
-}
-
 .pre-card {
-  margin: 0 20px 10px 20px;
+  margin: 0 0px 10px 0px;
 }
 
 .card {
   border-radius: 4px;
   background-color: #F1F4F9;
-  padding: 20px;
   font-size: 14px;
+}
+
+.card-body{
+  padding: 20px;
 }
 
 .alert-list {

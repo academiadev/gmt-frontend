@@ -1,0 +1,34 @@
+.modal-form input {
+    font-size: 14px;
+    width: 100%;
+    padding: 5px 10px;
+    border: 1px solid #C9D3DD;
+    border-radius: 2px;
+    background-color: #fff;
+}
+
+.modal-form label{
+    margin: 10px 0 5px 0;
+}
+
+[footer] .btn{
+    margin-left: 10px;
+}
+
+.input-group {
+    position: relative;
+    width: 100%;
+}
+
+.input-group-append {
+    background-color: #ffffff;
+    position: absolute;
+    right: 0;
+    .btn {
+        height: 2.3em;
+    }
+}
+
+.input-group-text {
+    width: 90%;
+}

@@ -1,4 +1,5 @@
 <contentCard>
+
     <div class="optional-btn" before>
         <button type="button" class="btn btn-success btn-lg">Aprovar</button>
         <button type="button" class="btn btn-danger btn-lg">Recusar</button>
@@ -9,7 +10,7 @@
     <div body>
         <table class="table table-hover" *ngIf="refundList.length > 0; else empty_message">
             <thead>
-                <tr class="text-secondary">
+                <tr>
                     <th scope="col" class="checkbox-column">
                         <div class="form-check">
                             <input class="form-check-input position-static" type="checkbox" id="header-checkbox">
@@ -42,11 +43,11 @@
             <h4 class="text-center mt-5 mb-5">Não foram encontrados reembolsos</h4>
         </ng-template>
         <div class="row no-gutters">
-            <div class="col-9">
-                <button type="button" class="btn btn-primary btn-lg">Criar Reembolso</button>
+            <div class="col-6">
+                <button type="button" class="btn btn-primary btn-lg" (click)="openModal()">Criar Reembolso</button>
             </div>
-            <div class="col-3">
-                Exibindo 10 de 25 registros
+            <div class="col-6">
+                <p>Exibindo 10 de 25 registros</p>
             </div>
         </div>
     </div>
