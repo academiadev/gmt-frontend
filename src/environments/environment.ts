@@ -14,6 +14,7 @@ export const environment = {
             refresh: backEndUrl + '/auth/refresh',
             changePassword: backEndUrl + '/auth/change-password',
             requestPassword: backEndUrl + '/password/request',
+            newPassword: backEndUrl + '/password/new-password',
         },
         user: {
             url: backEndUrl + '/user',

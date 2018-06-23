@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { DataService } from './data.service';
 import { environment } from './../../environments/environment';
 import { map, catchError } from 'rxjs/operators';
@@ -44,6 +44,14 @@ export class UserService extends DataService {
       catchError(this.handleError)
     );
   }
+ 
+  newPassword(email: String): Observable<Response> {
+    console.log(email);
+    return this.http.post(environment.urls.auth.newPassword, email).pipe(
+      map(res => <Response>res),
+      catchError(this.handleError)
+    );
+  }
 
   changePassword(passwords: string): Observable<Response> {
     console.log(passwords);
@@ -53,8 +61,7 @@ export class UserService extends DataService {
     );
   }
 
-  requestEmail(email: string): Observable<Response> | null {
-    console.log('meu'+email);
+  requestEmail(email: string): Observable<Response> {
     return this.http.post(environment.urls.user.email, email).pipe(
       map(res => <Response>res),
       catchError(this.handleError)

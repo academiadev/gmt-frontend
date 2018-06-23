@@ -18,6 +18,7 @@ import { ToastrService } from 'ngx-toastr';
 export class ChangePasswordComponent implements OnInit {
   form: FormGroup;
   errors: Array<any> = [];
+  header: Headers;
 
   constructor(
     private router: Router,
@@ -54,7 +55,9 @@ export class ChangePasswordComponent implements OnInit {
       return;
     }
 
-    this.userService.changePassword(password).subscribe((respose: Response) => {
+    let headerToken: string = this.route.snapshot.params.codigo;
+
+    this.userService.newPassword(password).subscribe((respose: Response) => {
       console.log(respose);
       const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
       this.router.navigate([returnUrl || '/login']);

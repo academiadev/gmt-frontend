@@ -23,9 +23,7 @@ export class CreateUserComponent implements OnInit {
     private route: ActivatedRoute,
   ) { }
 
-
   //Add ao validator:
-  //verificar o email;
   //O nivel da senha;
   ngOnInit() {
     this.form = new FormGroup({
@@ -45,12 +43,8 @@ export class CreateUserComponent implements OnInit {
         validators: [Validators.minLength(4), Validators.required],
         updateOn: 'submit'
       }),
-      'companyCode': new FormControl(null, {
-        validators: [],
-        updateOn: 'submit'
-      }),
-      'companyName': new FormControl(null, {
-        validators: [],
+      'company': new FormControl(null, {
+        validators: [Validators.required],
         updateOn: 'submit'
       }),
     });
@@ -65,8 +59,8 @@ export class CreateUserComponent implements OnInit {
         this.errors.push("Forneça um email válido!");
       if (!this.form.controls.password.valid)
         this.errors.push("Forneça um password válido!");
-      if (!this.form.controls.confPassword.valid)
-        this.errors.push("Forneça um Password válido!");
+      if (!this.form.controls.company.valid)
+        this.errors.push("Forneça uma empresa!");
       return;
     }
 

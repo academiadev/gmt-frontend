@@ -1,4 +1,4 @@
-<loginCard [errors]="[]">
+<loginCard [errors]="errors">
     <div title>Cadastro de usuário</div>
 
     <div body>
@@ -34,13 +34,13 @@
 
         <div *ngIf="hasInvitation" class="row mt-3 mb-3">
             <label for="invite-code">Código-convite</label>
-            <input formControlName="companyCode" type="text" id="invite-code" class="login-control" required>
         </div>
 
         <div *ngIf="!hasInvitation" class="row mt-3 mb-3">
             <label for="company-name">Nome da empresa</label>
-            <input formControlName="companyName" type="text" id="company-name" class="login-control" required>
         </div>
+
+        <input formControlName="company" type="text" id="company-name" class="login-control" required>
 
         <div class="row mt-5 mb-4">
             <button class="btn btn-lg btn-primary btn-block" type="submit">Cadastrar</button>
