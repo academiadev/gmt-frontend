@@ -21,6 +21,7 @@
                     <th scope="col">Valor</th>
                     <th scope="col">Categoria</th>
                     <th scope="col">Usuário</th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
@@ -35,6 +36,7 @@
                     <td>R$ {{ refund.valor }}</td>
                     <td>{{ refund.categoria }}</td>
                     <td>anonimo</td>
+                    <td class="open-popup" (click)="viewRefundModal(refund)">[ + ]</td>
                 </tr>
             </tbody>
         </table>

@@ -10,4 +10,9 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 export class CreateRefundComponent{
   @Input() data: RefundDTO;
+  uploads: Array<any> = [];
+
+  constructor(
+    public activeModal: NgbActiveModal
+  ) {}
 }

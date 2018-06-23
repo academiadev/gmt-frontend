@@ -40,3 +40,12 @@ ngb-modal-window.modal {
 .modal-md {
   width: 30em;
 }
+
+.modal-header {
+  background: #1989EA;
+
+  h1, h2, h3, h4, h5 {
+    color: #ffffff;
+  }
+  border-radius: 0;
+}

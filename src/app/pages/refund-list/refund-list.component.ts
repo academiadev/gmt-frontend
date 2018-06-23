@@ -1,3 +1,4 @@
+import { ViewRefundComponent } from './../../components/refund-modal/view/view-modal.component';
 import { CreateRefundComponent } from './../../components/refund-modal/create/create-modal.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { RefundDTO } from './../../dto/refund-dto';
@@ -43,6 +44,11 @@ export class RefundListComponent implements OnInit {
   openModal() {
     let refundModal = this.modalService.open(CreateRefundComponent, { size: 'lg', backdrop: 'static'} );
     refundModal.componentInstance.data = this.tmpDTO;
+  }
+
+  viewRefundModal(refund: RefundDTO){
+    let refundModal = this.modalService.open(ViewRefundComponent, { size: 'lg', backdrop: 'static'} );
+    refundModal.componentInstance.data = refund;
   }
 
 }
