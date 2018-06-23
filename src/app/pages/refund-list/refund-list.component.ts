@@ -1,18 +1,12 @@
 import { CreateRefundComponent } from './../../components/refund-modal/create/create-modal.component';
-import { ViewRefundComponent } from './../../components/refund-modal/view/view-modal.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { RefundDTO } from './../../dto/refund-dto';
-import { environment } from './../../../environments/environment';
-import { TokenDTO } from './../../dto/token-dto';
-import { BadCredentialsError } from './../../commons/bad-credentials';
-import { LoginDTO } from './../../dto/login-dto';
 import { AuthService } from './../../service/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
-import { RefundModalComponent } from '../../components/refund-modal/refund-modal.component';
 
 
 @Component({
