@@ -70,13 +70,4 @@ export class LoginComponent implements OnInit {
       });
   }
 
-  get usuario() {
-    return this.form.get('email');
-  }
-
-
-  get senha() {
-    return this.form.get('password');
-  }
-
 }

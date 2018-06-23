@@ -10,7 +10,7 @@ import { environment } from './../../environments/environment';
 export class CompanyService extends DataService {
 
   constructor(http: HttpClient) {
-    super(environment.urls.company.url, http);
+    super(environment.urls.user.company, http);
   }
 
 }

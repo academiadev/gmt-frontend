@@ -1,14 +1,10 @@
-import { environment } from './../../../environments/environment';
-import { TokenDTO } from './../../dto/token-dto';
+import { UserService } from '../../service/user.service';
+import { UserDTO } from '../../dto/user-dto';
+import { UserValidators } from '../../validators/user.validators';
 import { BadCredentialsError } from './../../commons/bad-credentials';
-import { LoginDTO } from './../../dto/login-dto';
-import { AuthService } from './../../service/auth.service';
-import { UsuarioValidator } from './create-user.validators';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators, Form } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { HttpErrorResponse } from '@angular/common/http';
-import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'create-user',
@@ -18,57 +14,93 @@ import { ToastrService } from 'ngx-toastr';
 
 export class CreateUserComponent implements OnInit {
   form: FormGroup;
-
-  hasInvitation : Boolean = false;
+  errors: Array<any> = [];
+  hasInvitation: Boolean = false;
 
   constructor(
     private router: Router,
-    private authService: AuthService,
+    private userService: UserService,
     private route: ActivatedRoute,
-    private toaster: ToastrService
   ) { }
 
+
+  //Add ao validator:
+  //verificar o email;
+  //O nivel da senha;
   ngOnInit() {
     this.form = new FormGroup({
-      'usuario': new FormControl(
-        '',
-        [
-          Validators.minLength(4), Validators.required,
-          UsuarioValidator.temEspacosEmBranco
-        ]
-      ),
-      'senha': new FormControl('', [Validators.required])
+      'name': new FormControl(null, {
+        validators: [Validators.minLength(4), Validators.required],
+        updateOn: 'submit'
+      }),
+      'email': new FormControl(null, {
+        validators: [Validators.minLength(4), Validators.required, Validators.email],
+        updateOn: 'submit'
+      }),
+      'password': new FormControl(null, {
+        validators: [Validators.minLength(4), Validators.required],
+        updateOn: 'submit'
+      }),
+      'confPassword': new FormControl(null, {
+        validators: [Validators.minLength(4), Validators.required],
+        updateOn: 'submit'
+      }),
+      'companyCode': new FormControl(null, {
+        validators: [],
+        updateOn: 'submit'
+      }),
+      'companyName': new FormControl(null, {
+        validators: [],
+        updateOn: 'submit'
+      }),
     });
   }
 
-  onSubmit(user: LoginDTO) {
-    this.authService.login(user).subscribe((token: TokenDTO) => {
-      localStorage.setItem(environment.tokenName, token.access_token);
+  onSubmit(user: UserDTO) {
+    if (this.form.invalid) {
+      this.errors = [];
+      if (!this.form.controls.name.valid)
+        this.errors.push("Forneça um nome válido!");
+      if (!this.form.controls.email.valid)
+        this.errors.push("Forneça um email válido!");
+      if (!this.form.controls.password.valid)
+        this.errors.push("Forneça um password válido!");
+      if (!this.form.controls.confPassword.valid)
+        this.errors.push("Forneça um Password válido!");
+      return;
+    }
 
+    if (UserValidators.confirmPasswords(this.form)) {
+      this.errors.push("Senhas não coincidem!");
+      return;
+    }
+
+    if (this.userService.requestEmail(this.form.controls.email.value)) {
+      this.errors.push("Email Ja utilizado!");
+      return;
+    }
+
+    let callbackSuccess = function (response: Response) {
+      console.log(response);
       const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
-      this.router.navigate([returnUrl || '/home']);
+      this.router.navigate([returnUrl || '/login']);
+    };
 
-      this.authService.refresh().subscribe(e => {
-        console.log(e);
-      });
+    let callbackFail = function (e) {
+      if (e instanceof BadCredentialsError) {
+        this.form.setErrors({ 'invalido': true });
+      } else {
+        this.errors = ["Ocorreu um erro durante a autenticação"];
+      }
+    };
 
-    },
-      (e) => {
-        if (e instanceof BadCredentialsError) {
-          this.senha.setErrors({ 'invalido': true });
-        } else {
-          throw e;
-        }
-      });
-  }
+    if (this.hasInvitation) {
+      this.userService.registerUser(user).subscribe(callbackSuccess, callbackFail);
+    }
+    else {
+      this.userService.registerUserCompany(user).subscribe(callbackSuccess, callbackFail);
+    }
 
-  get usuario() {
-    return this.form.get('usuario');
-  }
-
-
-  get senha() {
-    return this.form.get('senha');
   }
 
 }
