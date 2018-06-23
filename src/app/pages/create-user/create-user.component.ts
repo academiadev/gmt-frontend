@@ -71,7 +71,6 @@ export class CreateUserComponent implements OnInit {
         this.errors.push("Forneça um Password válido!");
       return;
     }
-
     //validador de email
     if (UserValidators.confirmPassowrds(this.form)) {
       this.errors.push("Senhas não coincidem!");
@@ -82,9 +81,8 @@ export class CreateUserComponent implements OnInit {
     //   this.errors.push("Senhas não coincidem!");
     //   return;
     // }
-
     if (this.hasInvitation) {
-      this.userService.registerUserCompany(user).subscribe((response: Response) => {
+      this.userService.registerUser(user).subscribe((response: Response) => {
         console.log(response);
         const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
         this.router.navigate([returnUrl || '/login']);
@@ -98,7 +96,7 @@ export class CreateUserComponent implements OnInit {
 
     }
     else {
-      this.userService.registerUser(user).subscribe((response: Response) => {
+      this.userService.registerUserCompany(user).subscribe((response: Response) => {
         console.log(response);
         const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
         this.router.navigate([returnUrl || '/login']);

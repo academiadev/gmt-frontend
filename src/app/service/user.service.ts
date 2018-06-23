@@ -14,7 +14,7 @@ import { TokenDTO } from '../dto/token-dto';
 export class UserService extends DataService {
 
   constructor(http: HttpClient) {
-    super(environment.urls.user.user, http);
+    super(environment.urls.user.url, http);
   }
 
   /**
@@ -23,14 +23,14 @@ export class UserService extends DataService {
 
   registerUser(user: UserDTO): Observable<Response> {
     //console.log("Registro de usuario apenas:"+user);
-    return this.http.post(environment.urls.user.user, user).pipe(
+    return this.http.post(environment.urls.user.url, user).pipe(
       map(res => <Response>res),
       catchError(this.handleError)
     );
   }
 
   registerUserCompany(user: UserDTO): Observable<Response> {
-    return this.http.post(environment.urls.user.company, user).pipe(
+    return this.http.post(environment.urls.user.newCompany, user).pipe(
       map(res => <Response>res),
       catchError(this.handleError)
     );

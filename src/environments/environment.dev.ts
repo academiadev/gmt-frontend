@@ -16,7 +16,8 @@ export const environment = {
             url: 'http://localhost:8080/company'
         },
         user: {
-            url: backEndUrl + '/user/'
+            url: backEndUrl + '/user/',
+            newCompany: backEndUrl + '/user/newCompany'
         }
     }
 };

@@ -11,19 +11,20 @@ export const environment = {
         auth: {
             url: backEndUrl + '/auth',
             login: backEndUrl + '/auth/login',
-            refresh: backEndUrl + '/auth/refresh',
+            refresh: backEndUrl + '/auth/refresh'
         },
         password: {
             request: backEndUrl + '/password/request',
             change: backEndUrl + '/auth/change-password',
         },
         user: {
-            user: backEndUrl + '/user',
-            email: backEndUrl + '/email',
-            company: backEndUrl + '/company',
+            url: backEndUrl + '/user/',
+            newCompany: backEndUrl + '/user/newCompany',
+            email: backEndUrl + 'user/email',
+            company: backEndUrl + 'user/company'
         },
         refund: {
-            url: backEndUrl + '/refund',
+            url: backEndUrl + '/refund/'
         },
     }
 };
