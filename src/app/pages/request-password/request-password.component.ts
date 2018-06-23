@@ -1,8 +1,7 @@
+import { UserService } from '../../service/user.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { UserService } from '../../service/user.service';
-
 
 @Component({
   selector: 'request-password',
@@ -43,7 +42,6 @@ export class RequestPasswordComponent implements OnInit {
       console.log(response);
       const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
       this.router.navigate([returnUrl || '/perdi-senha-enviado']);
-
     },
       (e) => {
         this.errors = ["Ocorreu um erro ao Enviar email"];
