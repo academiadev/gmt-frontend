@@ -56,9 +56,7 @@ export class LoginComponent implements OnInit {
       const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
       this.router.navigate([returnUrl || '/home']);
 
-      this.authService.refresh().subscribe(e => {
-        console.log(e);
-      });
+      this.authService.refresh().subscribe(e => {});
 
     },
       (e) => {

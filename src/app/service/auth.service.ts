@@ -15,6 +15,9 @@ import { Router } from '@angular/router';
 })
 export class AuthService extends DataService {
 
+  static readonly ROLE_ADMIN = "ROLE_ADMIN";
+  static readonly ROLE_USER = "ROLE_COMMONUSER";
+
   constructor(
     http: HttpClient,
     private jwtHelper: JwtHelperService,
@@ -75,8 +78,12 @@ export class AuthService extends DataService {
   }
 
   isAdmin(){
-    //return this.getRole() == "admin";
-    return false;
+    if(this.getRole == null){
+      return false;
+    }
+
+    //return this.getRole()['role'] == AuthService.ROLE_ADMIN;
+    return true;
   }
 
 }

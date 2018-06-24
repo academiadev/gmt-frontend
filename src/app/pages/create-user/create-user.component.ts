@@ -77,8 +77,7 @@ export class CreateUserComponent implements OnInit {
       //return;
     }
 
-    let callbackSuccess = function (response: Response) {
-      console.log(response);
+    let callbackSuccess = function(response: Response) {
       const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
       this.router.navigate([returnUrl || '/login']);
     };
