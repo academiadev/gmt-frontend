@@ -1,7 +1,7 @@
 <RefundModal title="{{mode}} Reembolso">
     <div main>
         <p>Preencha as informações abaixo para solicitar reembolso:</p>
-        <form class="modal-form" [formGroup]="form">
+        <form class="modal-form" [formGroup]="form" (ngSubmit)="alert('wrong choice');" id="createRefund">
             <div class="row mt-1 mb-1">
                 <div class="col-12">
                     <label for="input-titulo">Título</label>
@@ -48,8 +48,8 @@
         </form>
     </div>
     <div footer>
-        <button type="button" class="btn btn-secondary" (click)="activeModal.close('Close click')">Cancelar</button>
-        <button type="button" class="btn btn-primary" (click)="activeModal.close('Close click')">Enviar</button>
+        <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Cancelar</button>
+        <button type="submit" form="createRefund" class="btn btn-primary">Enviar</button>
     </div>
 </RefundModal>
     
