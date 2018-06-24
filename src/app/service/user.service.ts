@@ -6,6 +6,7 @@ import { map, catchError } from 'rxjs/operators';
 import { Observable } from 'rxjs/internal/Observable';
 import { UserDTO } from '../dto/user-dto';
 import { ValidationErrors } from '@angular/forms';
+import { ChangePassworDTO } from '../dto/change-passwor-dto';
 
 
 @Injectable({
@@ -39,7 +40,7 @@ export class UserService extends DataService {
 
   requestPassword(email: String): Observable<Response> {
     console.log(email);
-    return this.http.post(environment.urls.auth.requestPassword, email).pipe(
+    return this.http.post(environment.urls.password.request, email).pipe(
       map(res => <Response>res),
       catchError(this.handleError)
     );
@@ -47,13 +48,13 @@ export class UserService extends DataService {
  
   newPassword(email: String): Observable<Response> {
     console.log(email);
-    return this.http.post(environment.urls.auth.newPassword, email).pipe(
+    return this.http.post(environment.urls.password.new, email).pipe(
       map(res => <Response>res),
       catchError(this.handleError)
     );
   }
 
-  changePassword(passwords: string): Observable<Response> {
+  changePassword(passwords: ChangePassworDTO): Observable<Response> {
     console.log(passwords);
     return this.http.post(environment.urls.auth.changePassword, passwords).pipe(
       map(res => <Response>res),

@@ -58,21 +58,26 @@ export class CreateUserComponent implements OnInit {
       if (!this.form.controls.email.valid)
         this.errors.push("Forneça um email válido!");
       if (!this.form.controls.password.valid)
-        this.errors.push("Forneça um password válido!");
+        this.errors.push("Forneça uma senha válida!");
+      if (!this.form.controls.confPassword.valid)
+        this.errors.push("Confirmacao de senha Invalida!");
       if (!this.form.controls.company.valid)
         this.errors.push("Forneça uma empresa!");
       return;
     }
 
     if (UserValidators.confirmPasswords(this.form)) {
+      if(this.form.valid) {this.errors = [];}
       this.errors.push("Senhas não coincidem!");
       return;
     }
+    
 
-    if (this.userService.requestEmail(this.form.controls.email.value)) {
-      this.errors.push("Email Ja utilizado!");
-      return;
-    }
+    // if (this.userService.requestEmail(this.form.controls.email.value)) {
+    //   if(this.form.valid) {this.errors = [];}
+    //   this.errors.push("Email Ja utilizado!");
+    //   return;
+    // }
 
     let callbackSuccess = function (response: Response) {
       console.log(response);

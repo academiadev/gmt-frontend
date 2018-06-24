@@ -13,18 +13,22 @@ export const environment = {
             login: backEndUrl + '/auth/login',
             refresh: backEndUrl + '/auth/refresh',
             changePassword: backEndUrl + '/auth/change-password',
-            requestPassword: backEndUrl + '/password/request',
-            newPassword: backEndUrl + '/password/new-password',
+        },
+        password: {
+            request: backEndUrl + '/password/request',
+            new: backEndUrl + '/password/new-password',
         },
         user: {
             url: backEndUrl + '/user',
-            email: backEndUrl + 'user/email',
-            company: backEndUrl + 'user/company',
+            email: backEndUrl + '/user/email',
+            company: backEndUrl + '/user/company',
             newCompany: backEndUrl + '/user/newCompany',
-
         },
         refund: {
-            url: backEndUrl + '/refund/',
+            url: backEndUrl + '/refund',
+        },
+        company: {
+            url: backEndUrl + '/company',
         },
     }
 };
