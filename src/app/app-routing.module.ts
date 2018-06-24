@@ -24,7 +24,7 @@ const routes: Routes = [
   { path: 'trocar-senha/:codigo', component: ChangePasswordComponent, canActivate: [LoginGuard] },
   { path: 'perdi-senha', component: RequestPasswordComponent, canActivate: [LoginGuard] },
   { path: 'not-found', component: NotFoundComponent },
-  { path: 'reembolso', component: RefundListComponent},
+  { path: 'home', component: RefundListComponent},
   {
     path: '', component: RefundListComponent, canActivate: [AuthGuard],
     children: [

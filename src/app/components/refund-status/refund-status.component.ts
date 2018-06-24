@@ -1,18 +1,18 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'RefundModal',
-  templateUrl: './refund-modal.component.html',
-  styleUrls: ['./refund-modal.component.scss']
+  selector: 'RefundStatus',
+  templateUrl: './refund-status.component.html',
+  styleUrls: ['./refund-status.component.scss']
 })
 
-export class RefundModalComponent{
+export class RefundStatusComponent{
 
   static readonly APPROVED = "aceito";
   static readonly ANALYSIS = "em analise";
   static readonly UNAPPROVED = "reprovado";
 
-  @Input() status = RefundModalComponent.APPROVED;
+  @Input() status = RefundStatusComponent.APPROVED;
 
   constructor() {}
 }

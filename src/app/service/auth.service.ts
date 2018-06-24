@@ -36,7 +36,6 @@ export class AuthService extends DataService {
 
   logout() {
     localStorage.removeItem(environment.tokenName);
-    console.log('Usuário deslogado');
   }
 
   logoutAndRedirect() {
@@ -58,12 +57,26 @@ export class AuthService extends DataService {
     }
 
     const isExpired = this.jwtHelper.isTokenExpired(token);
-    console.log('Usuário está logado: ' + !isExpired);
     return !isExpired;
   }
 
   toObject<T>(obj: any): T {
     return <T>obj;
+  }
+
+  getRole(){
+    const token = localStorage.getItem(environment.tokenName);
+
+    if (!token) {
+      return null;
+    }
+
+    return this.jwtHelper.decodeToken(token);
+  }
+
+  isAdmin(){
+    //return this.getRole() == "admin";
+    return false;
   }
 
 }

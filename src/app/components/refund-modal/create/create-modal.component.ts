@@ -1,3 +1,4 @@
+import { AuthService } from './../../../service/auth.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { RefundDTO } from './../../../dto/refund-dto';
 import { Component, Input, OnInit } from '@angular/core';
@@ -14,14 +15,18 @@ export class CreateRefundComponent implements OnInit {
   mode = "Adicionar";
   form: FormGroup;
   @Input() data: RefundDTO = null;
+  tantofaz = "";
 
   constructor(
-    public activeModal: NgbActiveModal
+    public activeModal: NgbActiveModal,
+    public authService: AuthService
   ) {}
 
   ngOnInit(): void {
     
     let formDefault = { value: null, date: null, name: null, category: null };
+
+    console.log(this.authService.getRole());
 
     if(this.data != null){
       Object.assign(formDefault, this.data)

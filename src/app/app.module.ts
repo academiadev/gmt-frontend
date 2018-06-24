@@ -1,3 +1,4 @@
+import { RefundStatusComponent } from './components/refund-status/refund-status.component';
 import { CreateRefundComponent } from './components/refund-modal/create/create-modal.component';
 import { ViewRefundComponent } from './components/refund-modal/view/view-modal.component';
 import { RefundModalComponent } from './components/refund-modal/refund-modal.component';
@@ -53,7 +54,8 @@ export function tokenGetter() {
     ContentCardComponent,
     RefundModalComponent,
     ViewRefundComponent,
-    CreateRefundComponent
+    CreateRefundComponent,
+    RefundStatusComponent
   ],
   imports: [
     FormsModule,

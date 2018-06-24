@@ -17,11 +17,10 @@ export const environment = {
             newPassword: backEndUrl + '/password/new-password',
         },
         user: {
-            url: backEndUrl + '/user',
-            email: backEndUrl + 'user/email',
-            company: backEndUrl + 'user/company',
-            newCompany: backEndUrl + '/user/newCompany',
-
+            url: backEndUrl + '/user/',
+            email: backEndUrl + '/user/email/',
+            company: backEndUrl + '/user/company/',
+            newCompany: backEndUrl + '/user/newCompany/',
         },
         refund: {
             url: backEndUrl + '/refund/',

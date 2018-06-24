@@ -1,3 +1,4 @@
+import { AuthService } from './../../../service/auth.service';
 import { CreateRefundComponent } from './../create/create-modal.component';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { RefundDTO } from './../../../dto/refund-dto';
@@ -14,7 +15,8 @@ export class ViewRefundComponent{
 
   constructor(
     public activeModal: NgbActiveModal,
-    public modalService: NgbModal
+    public modalService: NgbModal,
+    public authService: AuthService
   ) { }
 
   changeToEditModal(){

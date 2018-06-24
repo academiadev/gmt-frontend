@@ -1,15 +1,25 @@
+let backEndUrl = 'https://bluerefundgmt.herokuapp.com';
 export const environment = {
   production: true,
-  backEndUrl: 'https://bluerefundgmt.herokuapp.com',
+  backEndUrl: backEndUrl,
   tokenName: 'access_token',
   urls: {
     auth: {
-      url: 'https://bluerefundgmt.herokuapp.com/auth',
-      login: 'https://bluerefundgmt.herokuapp.com/auth/login',
-      refresh: 'https://bluerefundgmt.herokuapp.com/auth/refresh',
+      url: backEndUrl + '/auth',
+      login: backEndUrl + '/auth/login',
+      refresh: backEndUrl + '/auth/refresh',
+      changePassword: backEndUrl + '/auth/change-password',
+      requestPassword: backEndUrl + '/password/request',
+      newPassword: backEndUrl + '/password/new-password',
     },
-    company: {
-      url: 'https://bluerefundgmt.herokuapp.com/company'
-    }
+    user: {
+        url: backEndUrl + '/user/',
+        email: backEndUrl + '/user/email/',
+        company: backEndUrl + '/user/company/',
+        newCompany: backEndUrl + '/user/newCompany/',
+    },
+    refund: {
+        url: backEndUrl + '/refund/',
+    },
   }
 };
