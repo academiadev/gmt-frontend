@@ -1,4 +1,5 @@
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { CreateRefundComponent } from './../create/create-modal.component';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { RefundDTO } from './../../../dto/refund-dto';
 import { Component, Input } from '@angular/core';
 
@@ -12,6 +13,20 @@ export class ViewRefundComponent{
   @Input() data: RefundDTO = null;
 
   constructor(
-    public activeModal: NgbActiveModal
-  ) {}
+    public activeModal: NgbActiveModal,
+    public modalService: NgbModal
+  ) { }
+
+  changeToEditModal(){
+    let refundModal = this.modalService.open(CreateRefundComponent, { size: 'lg', backdrop: 'static' } );
+    refundModal.componentInstance.data = this.data;
+  }
+
+  getUploadFile(){
+    if(this.data.file == null || this.data.file == ""){
+      return "Não fornecido";
+    }
+
+    return "<a href='"+this.data.file+"'>Visualizar</a>"
+  }
 }

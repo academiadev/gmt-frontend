@@ -1,18 +1,18 @@
 <RefundModal title="{{mode}} Reembolso">
     <div main>
         <p>Preencha as informações abaixo para solicitar reembolso:</p>
-        <form class="modal-form">
+        <form class="modal-form" [formGroup]="form">
             <div class="row mt-1 mb-1">
                 <div class="col-12">
                     <label for="input-titulo">Título</label>
-                    <input type="text" id="input-titulo" placeholder="Ex: Viagem para Bahia" required>
+                    <input type="text" formControlName="name" id="input-titulo" placeholder="Ex: Viagem para Bahia" required>
                 </div>
             </div>
 
             <div class="row mt-1 mb-1">
                 <div class="col-6">
                     <label for="input-categoria">Categoria</label>
-                    <select class="custom-select">
+                    <select formControlName="category" class="custom-select">
                         <option selected>Selecione uma categoria</option>
                         <option value="1">One</option>
                         <option value="2">Two</option>
@@ -22,7 +22,7 @@
                 <div class="col-6">
                     <label for="input-data">Data</label>
                     <div class="input-group">
-                        <input id="input-data" class="input-group-text" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #dp="ngbDatepicker">
+                        <input id="input-data" formControlName="date" class="form-control" placeholder="yyyy-mm-dd" ngbDatepicker #dp="ngbDatepicker">
                         <div class="input-group-append">
                             <button class="btn btn-outline-secondary" (click)="dp.toggle()" type="button">
                             <img src="assets/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
@@ -35,20 +35,16 @@
             <div class="row mt-1 mb-1">
                 <div class="col-6">
                     <label for="input-valor">Valor</label>
-                    <input type="text" id="input-valor" placeholder="Ex: 49,90" required>
+                    <input type="text" formControlName="value" id="input-valor" placeholder="Ex: 49,90" required>
                 </div>
             </div>
 
             <div class="row mt-1 mb-1">
-                    <div class="col-6">
-                        <label for="input-valor">Comprovantes</label>
-                        <ul *ngIf="uploads.length > 0">
-                            <li *ngFor>Arquivo 1</li>
-                            <li>Arquivo 2</li>
-                        </ul>
-                        <button type="button" class="btn btn-secondary btn-sm">Adicionar comprovante</button>
-                    </div>
+                <div class="col-6">
+                    <label for="input-valor">Comprovante</label>
+                    <button type="button" class="btn btn-secondary btn-sm">Adicionar comprovante</button>
                 </div>
+            </div>
         </form>
     </div>
     <div footer>

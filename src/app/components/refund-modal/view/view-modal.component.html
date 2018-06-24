@@ -3,39 +3,39 @@
         <div class="row mt-1 mb-1">
             <div class="col-12">
                 <p class="label">Título</p>
-                <p class="field-value">{{data.titulo}}</p>
+                <p class="field-value">{{data.name}}</p>
             </div>
         </div>
 
         <div class="row mt-1 mb-1">
             <div class="col-6">
                 <p class="label">Categoria</p>
-                <p class="field-value">{{data.categoria}}</p>
+                <p class="field-value">{{data.category}}</p>
             </div>
             <div class="col-6">
                 <p class="label">Data</p>
-                <p class="field-value">{{data.data}}</p>
+                <p class="field-value">{{data.date}}</p>
             </div>
         </div>
 
         <div class="row mt-1 mb-1">
             <div class="col-6">
                 <p class="label">Valor</p>
-                <p class="field-value">R$ {{data.valor}}</p>
+                <p class="field-value">R$ {{data.value}}</p>
             </div>
         </div>
 
         <div class="row mt-1 mb-1">
             <div class="col-6">
-                <p class="label">Arquivos</p>
-                <p class="field-value upload">Upload 1</p>
-                <p class="field-value upload">Upload 2</p>
-                <p class="field-value upload">Upload 3</p>
+                <p class="label">Comprovante</p>
+                <p class="field-value" [innerHTML]="getUploadFile()"></p>
             </div>
         </div>
     </div>
     <div footer>
-        <button type="button" class="btn btn-primary">Editar</button>
+        <button type="button" class="btn btn-primary" (click)="activeModal.close(''); changeToEditModal();">Alterar</button>
         <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Fechar</button>
+        <button type="button" class="btn btn-outline-danger">Reprovar</button>
+        <button type="button" class="btn btn-outline-success">Aprovar</button>
     </div>
 </RefundModal>

@@ -7,11 +7,16 @@
         border: 1px solid #C9D3DD;
         border-radius: 2px;
         background-color: #F1F4F9;
+        color: #495057;
     }
 
     label{
         margin: 15px 0 5px 0;
     }
+}
+
+.form-control {
+    background-color: #F1F4F9;
 }
 
 [footer] .btn{

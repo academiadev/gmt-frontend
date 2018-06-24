@@ -9,30 +9,46 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./create-modal.component.scss']
 })
 
-export class CreateRefundComponent implements OnInit{
+export class CreateRefundComponent implements OnInit {
+  currentComponent = this;
   mode = "Adicionar";
   form: FormGroup;
   @Input() data: RefundDTO = null;
-  uploads: Array<any> = [];
 
   constructor(
     public activeModal: NgbActiveModal
   ) {}
 
   ngOnInit(): void {
+    
+    let formDefault = { value: null, date: null, name: null, category: null };
+
+    if(this.data != null){
+      Object.assign(formDefault, this.data)
+      formDefault.date = this.data.getSplitDate()
+    }
+
     this.form = new FormGroup({
-      'usuario': new FormControl(
-        this.data.usuario,
-        [
-          Validators.minLength(4), Validators.required
-        ]
+      'value': new FormControl(
+        formDefault.value,
+        [ Validators.required ]
       ),
-      'senha': new FormControl('', [Validators.required])
+      'date': new FormControl(
+        formDefault.date,
+        [ Validators.required ]
+      ),
+      'name': new FormControl(
+        formDefault.name,
+        [ Validators.required ]
+      ),
+      'category': new FormControl(
+        formDefault.category,
+        [ Validators.required ]
+      ),
     });
 
     if(this.data != null){
       this.mode = "Alterar";
-
     }
   }
 }

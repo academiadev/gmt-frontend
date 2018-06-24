@@ -1,8 +1,8 @@
 <contentCard>
 
     <div class="optional-btn" before>
-        <button type="button" class="btn btn-success btn-lg">Aprovar</button>
-        <button type="button" class="btn btn-danger btn-lg">Recusar</button>
+        <button type="button" class="btn btn-outline-success btn-lg">Aprovar</button>
+        <button type="button" class="btn btn-outline-danger btn-lg">Recusar</button>
     </div>
 
     <div title>Reembolsos disponíveis</div>
@@ -13,7 +13,7 @@
                 <tr>
                     <th scope="col" class="checkbox-column">
                         <div class="form-check">
-                            <input class="form-check-input position-static" type="checkbox" id="header-checkbox">
+                            <input class="form-check-input position-static" [(ngModel)]="checkboxes" type="checkbox" id="header-checkbox">
                         </div>
                     </th>
                     <th scope="col">Reembolso</th>
@@ -28,15 +28,15 @@
                 <tr *ngFor="let refund of refundList; let i = index">
                     <td>
                         <div class="form-check">
-                            <input class="form-check-input position-static" [attr.checkbox-index]="i" type="checkbox">
+                            <input class="form-check-input position-static" [(ngModel)]="checkboxes" [attr.checkbox-index]="i" type="checkbox">
                         </div>
                     </td>
-                    <td>{{ refund.titulo }}</td>
+                    <td>{{ refund.name }}</td>
                     <td>{{ refund.status }}</td>
-                    <td>R$ {{ refund.valor }}</td>
-                    <td>{{ refund.categoria }}</td>
-                    <td>anonimo</td>
-                    <td class="open-popup" (click)="editRefundModal(refund)">[ + ]</td>
+                    <td>R$ {{ refund.value }}</td>
+                    <td>{{ refund.category }}</td>
+                    <td>{{ refund.user }}</td>
+                    <td class="open-popup" (click)="viewRefundModal(refund)">[ + ]</td>
                 </tr>
             </tbody>
         </table>

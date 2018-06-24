@@ -18,6 +18,7 @@ import { ToastrService } from 'ngx-toastr';
 
 export class RefundListComponent implements OnInit {
   form: FormGroup;
+  checkboxes = false;
   refundList: Array<RefundDTO> = [];
   tmpDTO: any;
 
@@ -30,12 +31,17 @@ export class RefundListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.refundList.push(new RefundDTO('Passeio', 50.49, 'Avaliação', 'Alimentação'))
-    this.refundList.push(new RefundDTO('Passeio', 50.49, 'Avaliação', 'Alimentação'))
+    this.refundList.push(new RefundDTO(1, "2/10/2018", 'Passeio', 50.49, "Joazinho",'Avaliação', 'Alimentação', "a"))
+    this.refundList.push(new RefundDTO(1, "2/10/2018", 'Passeio', 50.49, "Joazinho",'Avaliação', 'Alimentação', ""))
   }
 
   ToggleCheckboxes(){
-    
+    if(this.refundList.length == 0){
+      return;
+    }
+
+    let listCount = this.refundList.length - 1;
+
   }
 
   createRefundModal(modalComponent: any = CreateRefundComponent) {
