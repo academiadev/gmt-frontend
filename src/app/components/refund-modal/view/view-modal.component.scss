@@ -3,7 +3,7 @@
     min-width: 400px;
 }
 
-.view-data .label{
+.view-data .label {
     margin: 15px 0 5px 0;
     font-weight: bold;
 }
@@ -13,6 +13,10 @@
     margin: 0 0 10px 5px;
 }
 
-[footer] .btn{
+[footer] .btn {
     margin-left: 10px;
+}
+
+.btn:hover fa {
+    color: #ffffff !important;
 }
