@@ -8,10 +8,10 @@
 </header>
 
 <ng-template #loggedIn>
-  <a class="text-dark" [routerLink]="['/reembolso']">reembolso</a>
-  <a class="text-dark" [routerLink]="['/empresa']">empresa</a>
-  <a class="text-dark" [routerLink]="['/perfil']">perfil</a>
-  <a class="btn btn-outline-primary" href="javascript:void(0)" (click)="onClick()">Logout</a>
+  <a class="text-dark" [routerLink]="['/reembolso']">Reembolsos</a>
+  <a class="text-dark" [routerLink]="['/empresa']">Empresa</a>
+  <a class="text-dark" [routerLink]="['/perfil']">Perfil</a>
+  <a class="btn btn-outline-primary btn-logout" href="javascript:void(0)" (click)="onClick()"><fa name="sign-out" class="fa-lg text-primary"></fa>&nbsp;Sair</a>
 </ng-template>
 <ng-template #notLogged>
   <a class="btn btn-outline-primary" [routerLink]="['/login']">Login</a>
