@@ -1,8 +1,12 @@
 export class RefundDTO {
     constructor(
-        public titulo: String,
-        public valor: Number,
+        public id: Number,
+        public date: String,
+        public name: String,
+        public value: Number,
+        public user: String,
         public status: String,
-        public categoria: String
+        public refundCategory: String,
+        public file: String,
     ) { }
 }

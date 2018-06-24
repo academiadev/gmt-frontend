@@ -36,7 +36,7 @@
                     <td>R$ {{ refund.valor }}</td>
                     <td>{{ refund.categoria }}</td>
                     <td>anonimo</td>
-                    <td class="open-popup" (click)="viewRefundModal(refund)">[ + ]</td>
+                    <td class="open-popup" (click)="editRefundModal(refund)">[ + ]</td>
                 </tr>
             </tbody>
         </table>
@@ -46,7 +46,7 @@
         </ng-template>
         <div class="row no-gutters">
             <div class="col-6">
-                <button type="button" class="btn btn-primary btn-lg" (click)="openModal()">Criar Reembolso</button>
+                <button type="button" class="btn btn-primary btn-lg" (click)="createRefundModal()">Criar Reembolso</button>
             </div>
             <div class="col-6">
                 <p>Exibindo 10 de 25 registros</p>
