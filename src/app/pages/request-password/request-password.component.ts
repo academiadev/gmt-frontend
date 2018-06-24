@@ -32,6 +32,7 @@ export class RequestPasswordComponent implements OnInit {
   }
 
   onSubmit(email: string) {
+    let enviado = false;
     if (this.form.invalid) {
       this.errors = [];
       if (!this.form.controls.email.valid)
@@ -40,12 +41,10 @@ export class RequestPasswordComponent implements OnInit {
     }
     this.userService.requestPassword(email).subscribe((response: Response) => {
       console.log(response);
-      //
-      const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
-      this.router.navigate([returnUrl || '/perdi-senha-enviado']);
+      enviado = true;
     },
       (e) => {
-        this.errors = ["Ocorreu um erro ao Enviar email"];
+      this.errors = ["Ocorreu um erro ao Enviar email"];
       });
   }
 

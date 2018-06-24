@@ -2,9 +2,12 @@
   <main class="navbar-container">
     <h1 class="font-weight-normal"> Reembolso Azul </h1>
     <nav class="nav-items align-right">
-      <a class="text-dark" href="#">Alguma</a>
-      <a class="text-dark" href="#">Coisa</a>
-      <a class="btn btn-outline-primary" href="#">Cadastre-se</a>
+      <a class="text-dark" [routerLink]="['/home']">home</a>
+      <a class="text-dark" [routerLink]="['/reembolso']">reembolso</a>
+      <a class="text-dark" [routerLink]="['/empresa']">empresa</a>
+      <a *ngIf="!logado" class="btn btn-outline-primary" [routerLink]="['/login']">Login</a>
+      <a *ngIf="!logado" class="btn btn-outline-primary" [routerLink]="['/registrar']">Cadastre-se</a>
+      <a *ngIf="logado" class="btn btn-outline-primary" (click)="onClick()">Logout</a>
     </nav>
   </main>
 </header>
