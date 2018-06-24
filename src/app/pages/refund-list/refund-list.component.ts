@@ -24,15 +24,15 @@ export class RefundListComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private authService: AuthService,
+    public authService: AuthService,
     private route: ActivatedRoute,
     private toaster: ToastrService,
     private modalService: NgbModal
   ) { }
 
   ngOnInit() {
-    this.refundList.push(new RefundDTO(1, "2/10/2018", 'Passeio', 50.49, "Joazinho",'Avaliação', 'Alimentação', "a"))
-    this.refundList.push(new RefundDTO(1, "2/10/2018", 'Passeio', 50.49, "Joazinho",'Avaliação', 'Alimentação', ""))
+    this.refundList.push(new RefundDTO(1, "2/10/2018", 'Passeio', 50.49, "Joazinho",'analise', 'Alimentação', "a"))
+    this.refundList.push(new RefundDTO(1, "2/10/2018", 'Passeio', 50.49, "Joazinho",'aceito', 'Alimentação', ""))
   }
 
   ToggleCheckboxes(){

@@ -7,6 +7,10 @@
   th {
     border-top: none;
   }
+
+  td {
+    line-height: 2em;
+  }
 }
 
 .optional-btn {
@@ -20,4 +24,13 @@
 .open-popup {
   font-weight: bold;
   cursor: pointer;
+}
+
+.box-info {
+  margin: 0;
+  line-height: 3em;
+}
+
+.status-column {
+  width: 2em;
 }

@@ -1,41 +1,51 @@
 <contentCard>
 
-    <div class="optional-btn" before>
-        <button type="button" class="btn btn-outline-success btn-lg">Aprovar</button>
-        <button type="button" class="btn btn-outline-danger btn-lg">Recusar</button>
-    </div>
-
     <div title>Reembolsos disponíveis</div>
+
+    <div class="optional-btn" before>
+        <ng-container *ngIf="authService.isAdmin()">
+            <button type="button" class="btn btn-outline-success btn-lg">Aprovar</button>
+            <button type="button" class="btn btn-outline-danger btn-lg">Recusar</button>
+        </ng-container>
+    </div>
 
     <div body>
         <table class="table table-hover" *ngIf="refundList.length > 0; else empty_message">
             <thead>
                 <tr>
-                    <th scope="col" class="checkbox-column">
-                        <div class="form-check">
-                            <input class="form-check-input position-static" [(ngModel)]="checkboxes" type="checkbox" id="header-checkbox">
-                        </div>
-                    </th>
+                    <ng-container *ngIf="authService.isAdmin()">
+                        <th scope="col" class="checkbox-column">
+                            <div class="form-check">
+                                <input class="form-check-input position-static" [(ngModel)]="checkboxes" type="checkbox" id="header-checkbox">
+                            </div>
+                        </th>
+                    </ng-container>
                     <th scope="col">Reembolso</th>
-                    <th scope="col" class="text-center">Status</th>
-                    <th scope="col">Valor</th>
-                    <th scope="col">Categoria</th>
-                    <th scope="col">Usuário</th>
+                    <th scope="col" class="status-column">Status</th>
+                    <th scope="col" class="text-right">Valor</th>
+                    <th scope="col" class="text-right">Categoria</th>
+                    <ng-container *ngIf="authService.isAdmin()">
+                        <th scope="col" class="text-right">Usuário</th>
+                    </ng-container>
                     <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let refund of refundList; let i = index">
-                    <td>
-                        <div class="form-check">
-                            <input class="form-check-input position-static" [(ngModel)]="checkboxes" [attr.checkbox-index]="i" type="checkbox">
-                        </div>
-                    </td>
+                    <ng-container *ngIf="authService.isAdmin()">
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input position-static" [(ngModel)]="checkboxes" [attr.checkbox-index]="i" type="checkbox">
+                            </div>
+                        </td>
+                    </ng-container>
                     <td>{{ refund.name }}</td>
-                    <td>{{ refund.status }}</td>
-                    <td>R$ {{ refund.value }}</td>
-                    <td>{{ refund.category }}</td>
-                    <td>{{ refund.user }}</td>
+                    <td class="text-center"><RefundStatus status="{{ refund.status }}"></RefundStatus></td>
+                    <td class="text-right">R$ {{ refund.value }}</td>
+                    <td class="text-right">{{ refund.category }}</td>
+                    <ng-container *ngIf="authService.isAdmin()">
+                        <td class="text-right">{{ refund.user }}</td>
+                    </ng-container>
                     <td class="open-popup" (click)="viewRefundModal(refund)">[ + ]</td>
                 </tr>
             </tbody>
@@ -49,7 +59,7 @@
                 <button type="button" class="btn btn-primary btn-lg" (click)="createRefundModal()">Criar Reembolso</button>
             </div>
             <div class="col-6">
-                <p>Exibindo 10 de 25 registros</p>
+                <p class="box-info text-right">Exibindo {{refundList.length}} resultados</p>
             </div>
         </div>
     </div>

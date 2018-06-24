@@ -1,3 +1,4 @@
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { RefundStatusComponent } from './components/refund-status/refund-status.component';
 import { CreateRefundComponent } from './components/refund-modal/create/create-modal.component';
 import { ViewRefundComponent } from './components/refund-modal/view/view-modal.component';
@@ -55,7 +56,7 @@ export function tokenGetter() {
     ViewRefundComponent,
     CreateRefundComponent,
     RefundStatusComponent,
-    UserEditComponent,
+    UserEditComponent
   ],
   imports: [
     FormsModule,
@@ -66,6 +67,7 @@ export function tokenGetter() {
     AppRoutingModule,
     BrowserAnimationsModule,
     LayoutModule,
+    AngularFontAwesomeModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
