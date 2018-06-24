@@ -86,6 +86,6 @@ export function tokenGetter() {
     { provide: ErrorHandler, useClass: AppErrorHandler }
   ],
   bootstrap: [AppComponent],
-  entryComponents: [ RefundModalComponent, CreateRefundComponent ]
+  entryComponents: [ RefundModalComponent, CreateRefundComponent, ViewRefundComponent ]
 })
 export class AppModule { }

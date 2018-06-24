@@ -2,7 +2,8 @@ footer{
   padding: 1em 2em 1em 4em;
   margin: 0 auto;
   margin-top: 2em;
-  width: 35em;
+  min-width: 25em;
+  max-width: 50em;
   border-top: 1px solid #e5e5e5;
 }
 

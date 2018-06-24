@@ -1,9 +1,41 @@
 <RefundModal title="Visualizar Reembolso">
-    <div main>
-        <div>{{data}}</div>
-        Dados do reembolso
+    <div main class="view-data">
+        <div class="row mt-1 mb-1">
+            <div class="col-12">
+                <p class="label">Título</p>
+                <p class="field-value">{{data.name}}</p>
+            </div>
+        </div>
+
+        <div class="row mt-1 mb-1">
+            <div class="col-6">
+                <p class="label">Categoria</p>
+                <p class="field-value">{{data.category}}</p>
+            </div>
+            <div class="col-6">
+                <p class="label">Data</p>
+                <p class="field-value">{{data.date}}</p>
+            </div>
+        </div>
+
+        <div class="row mt-1 mb-1">
+            <div class="col-6">
+                <p class="label">Valor</p>
+                <p class="field-value">R$ {{data.value}}</p>
+            </div>
+        </div>
+
+        <div class="row mt-1 mb-1">
+            <div class="col-6">
+                <p class="label">Comprovante</p>
+                <p class="field-value" [innerHTML]="getUploadFile()"></p>
+            </div>
+        </div>
     </div>
     <div footer>
+        <button type="button" class="btn btn-primary" (click)="activeModal.close(''); changeToEditModal();">Alterar</button>
         <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Fechar</button>
+        <button type="button" class="btn btn-outline-danger">Reprovar</button>
+        <button type="button" class="btn btn-outline-success">Aprovar</button>
     </div>
 </RefundModal>
