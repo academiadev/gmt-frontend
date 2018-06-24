@@ -2,7 +2,7 @@
 // `ng build ---prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
-let backEndUrl = 'http://localhost:8082';
+let backEndUrl = 'https://bluerefundgmt.herokuapp.com';
 export const environment = {
     production: false,
     backEndUrl: backEndUrl,
@@ -13,8 +13,10 @@ export const environment = {
             login: backEndUrl + '/auth/login',
             refresh: backEndUrl + '/auth/refresh',
             changePassword: backEndUrl + '/auth/change-password',
-            requestPassword: backEndUrl + '/password/request',
-            newPassword: backEndUrl + '/password/new-password',
+        },
+        password: {
+            request: backEndUrl + '/password/request',
+            new: backEndUrl + '/password/new-password',
         },
         user: {
             url: backEndUrl + '/user/',
@@ -23,7 +25,10 @@ export const environment = {
             newCompany: backEndUrl + '/user/newCompany/',
         },
         refund: {
-            url: backEndUrl + '/refund/',
+            url: backEndUrl + '/refund',
+        },
+        company: {
+            url: backEndUrl + '/company',
         },
     }
 };

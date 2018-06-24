@@ -8,7 +8,6 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { LoginComponent } from './pages/login/login.component';
 import { CompanyComponent } from './pages/company/company.component';
-import { CompanyEditComponent } from './pages/company-edit/company-edit.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
@@ -31,6 +30,7 @@ import { LoginCardComponent } from './components/login-card/login-card.component
 import { FooterComponent } from './components/footer/footer.component';
 import { RefundListComponent } from './pages/refund-list/refund-list.component';
 import { ContentCardComponent } from './components/content-card/content-card.component';
+import { UserEditComponent } from './pages/user-edit/user-edit.component';
 
 export function tokenGetter() {
   const token = localStorage.getItem(environment.tokenName);
@@ -45,7 +45,6 @@ export function tokenGetter() {
     LoginComponent,
     CreateUserComponent,
     CompanyComponent,
-    CompanyEditComponent,
     RequestPasswordComponent,
     ChangePasswordComponent,
     LoginCardComponent,
@@ -55,7 +54,8 @@ export function tokenGetter() {
     RefundModalComponent,
     ViewRefundComponent,
     CreateRefundComponent,
-    RefundStatusComponent
+    RefundStatusComponent,
+    UserEditComponent,
   ],
   imports: [
     FormsModule,

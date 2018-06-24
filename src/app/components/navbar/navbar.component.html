@@ -2,9 +2,18 @@
   <main class="navbar-container">
     <h1 class="font-weight-normal"> Reembolso Azul </h1>
     <nav class="nav-items align-right">
-      <a class="text-dark" href="#">Alguma</a>
-      <a class="text-dark" href="#">Coisa</a>
-      <a class="btn btn-outline-primary" href="#">Cadastre-se</a>
+      <ng-template *ngIf="logado; then loggedIn else notLogged"></ng-template>
     </nav>
   </main>
 </header>
+
+<ng-template #loggedIn>
+  <a class="text-dark" [routerLink]="['/reembolso']">reembolso</a>
+  <a class="text-dark" [routerLink]="['/empresa']">empresa</a>
+  <a class="text-dark" [routerLink]="['/perfil']">perfil</a>
+  <a class="btn btn-outline-primary" href="javascript:void(0)" (click)="onClick()">Logout</a>
+</ng-template>
+<ng-template #notLogged>
+  <a class="btn btn-outline-primary" [routerLink]="['/login']">Login</a>
+  <a class="btn btn-outline-primary" [routerLink]="['/registrar']">Cadastre-se</a>
+</ng-template>
