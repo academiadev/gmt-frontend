@@ -34,12 +34,15 @@
     </div>
     <div footer>
         <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Fechar</button>
-        <ng-template *ngIf="!authService.isAdmin()">
-            <button type="button" class="btn btn-primary" (click)="activeModal.close(''); changeToEditModal();">Alterar</button>
-        </ng-template>
-        <ng-template *ngIf="authService.isAdmin()">
-            <button type="button" class="btn btn-outline-danger">Reprovar</button>
-            <button type="button" class="btn btn-outline-success">Aprovar</button>
-        </ng-template>
+        <ng-template *ngIf="authService.isAdmin(); then isAdmin else notAdmin"></ng-template>
     </div>
 </RefundModal>
+
+<ng-template #notAdmin>
+    <button type="button" class="btn btn-primary" (click)="activeModal.close(''); changeToEditModal();">Alterar</button>
+</ng-template>
+
+<ng-template #isAdmin>
+    <button type="button" class="btn btn-outline-danger">Reprovar</button>
+    <button type="button" class="btn btn-outline-success">Aprovar</button>
+</ng-template>
