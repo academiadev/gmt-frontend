@@ -1,3 +1,4 @@
+import { catchError } from 'rxjs/operators';
 import { ViewRefundComponent } from './../../components/refund-modal/view/view-modal.component';
 import { CreateRefundComponent } from './../../components/refund-modal/create/create-modal.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -8,6 +9,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
+import { RefundService } from '../../service/refund.service';
 
 
 @Component({
@@ -27,12 +29,19 @@ export class RefundListComponent implements OnInit {
     public authService: AuthService,
     private route: ActivatedRoute,
     private toaster: ToastrService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private refundService: RefundService
   ) { }
 
   ngOnInit() {
-    this.refundList.push(new RefundDTO(1, "2/10/2018", 'Passeio', 50.49, "Joazinho",'analise', 'Alimentação', "a"))
-    this.refundList.push(new RefundDTO(1, "2/10/2018", 'Passeio', 50.49, "Joazinho",'aceito', 'Alimentação', ""))
+    this.refundService.getAll<RefundDTO[]>().subscribe(
+      results => { 
+        let dtos: RefundDTO[] = results;
+        this.refundList = this.refundList.concat(dtos);
+        console.log(dtos);
+      }
+    );
+    this.refundList.push(new RefundDTO(1, "2/10/2018", 'Passeio', "50.49", 0, 'WAITING', 'ALIMENTACAO', "a"));
   }
 
   ToggleCheckboxes(){

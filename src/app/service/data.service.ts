@@ -1,3 +1,4 @@
+import { ForbiddenError } from './../commons/forbidden-error';
 
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -44,7 +45,11 @@ export class DataService {
         if (error.status === 401) {
             return throwError(new BadCredentialsError(error));
         }
+        if (error.status === 403) {
+            return throwError(new ForbiddenError(error));
+        }
         if (error.status === 404) {
+            console.log(error);
             return throwError(new NotFoundError());
         }
         return throwError(new AppError(error));

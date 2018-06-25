@@ -10,7 +10,7 @@
         <div class="row mt-1 mb-1">
             <div class="col-6">
                 <p class="label">Categoria</p>
-                <p class="field-value">{{data.category}}</p>
+                <p class="field-value">{{data.categoryFriendly}}</p>
             </div>
             <div class="col-6">
                 <p class="label">Data</p>
@@ -35,6 +35,7 @@
     <div footer>
         <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Fechar</button>
         <ng-template *ngIf="authService.isAdmin(); then isAdmin else notAdmin"></ng-template>
+        <button type="button" class="btn btn-primary" (click)="activeModal.close(''); changeToEditModal();">Alterar</button>
     </div>
 </RefundModal>
 

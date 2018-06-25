@@ -1,7 +1,7 @@
 <RefundModal title="{{mode}} Reembolso">
     <div main>
         <p>Preencha as informações abaixo para solicitar reembolso:</p>
-        <form class="modal-form" [formGroup]="form" (ngSubmit)="tantofaz='ble'" id="createRefund">
+        <form class="modal-form" [formGroup]="form" (ngSubmit)="onSubmit(form.value)" id="createRefund">
             <div class="row mt-1 mb-1">
                 <div class="col-12">
                     <label for="input-titulo">Título</label>
@@ -13,19 +13,18 @@
                 <div class="col-6">
                     <label for="input-categoria">Categoria</label>
                     <select formControlName="category" class="custom-select">
-                        <option selected>Selecione uma categoria</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                        <option *ngFor="let category of categories" value="{{ category.name }}">{{ category.friendlyName }}</option>
                     </select>
                 </div>
                 <div class="col-6">
                     <label for="input-data">Data</label>
-                    <div class="input-group">
-                        <input id="input-data" formControlName="date" class="form-control" placeholder="yyyy-mm-dd" ngbDatepicker #dp="ngbDatepicker">
-                        <div class="input-group-append">
-                            <button class="btn btn-outline-secondary" (click)="dp.toggle()" type="button">
-                            <img src="assets/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
+                    <div class="row no-gutters">
+                        <div class="col-9">
+                            <input id="input-data" formControlName="date" class="date-field" placeholder="yyyy-mm-dd" ngbDatepicker #dp="ngbDatepicker">
+                        </div>
+                        <div class="col-3">
+                            <button class="btn btn-outline-secondary date-button" (click)="dp.toggle()" type="button">
+                                <img src="assets/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
                             </button>
                         </div>
                     </div>

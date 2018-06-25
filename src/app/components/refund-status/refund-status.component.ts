@@ -10,9 +10,9 @@ export class RefundStatusComponent implements OnInit{
   statusClass: String = "";
   statusIcon: String = "";
 
-  static readonly APPROVED = "aceito";
-  static readonly ANALYSIS = "analise";
-  static readonly UNAPPROVED = "reprovado";
+  static readonly APPROVED = "ACCEPTED";
+  static readonly ANALYSIS = "WAITING";
+  static readonly UNAPPROVED = "REFUSED";
 
   @Input() status: String = RefundStatusComponent.APPROVED;
 

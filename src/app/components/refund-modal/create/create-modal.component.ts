@@ -1,8 +1,11 @@
+import { CategoryService } from './../../../service/category.service';
+import { RefundService } from './../../../service/refund.service';
 import { AuthService } from './../../../service/auth.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { RefundDTO } from './../../../dto/refund-dto';
 import { Component, Input, OnInit } from '@angular/core';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbDateParserFormatter, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+
 
 @Component({
   selector: 'CreateRefund',
@@ -15,16 +18,21 @@ export class CreateRefundComponent implements OnInit {
   mode = "Adicionar";
   form: FormGroup;
   @Input() data: RefundDTO = null;
-  tantofaz = "";
+  categories: Array<Object> = [];
 
   constructor(
     public activeModal: NgbActiveModal,
-    public authService: AuthService
+    public authService: AuthService,
+    private refundService: RefundService,
+    private categoryService: CategoryService,
+    private parserFormatter: NgbDateParserFormatter
   ) {}
 
   ngOnInit(): void {
+
+    this.categories = this.categoryService.getAllFriendly();
     
-    let formDefault = { value: null, date: null, name: null, category: null };
+    let formDefault = { value: null, date: null, name: null, refundCategory: null };
 
     console.log(this.authService.getRole());
 
@@ -47,7 +55,7 @@ export class CreateRefundComponent implements OnInit {
         [ Validators.required ]
       ),
       'category': new FormControl(
-        formDefault.category,
+        formDefault.refundCategory,
         [ Validators.required ]
       ),
     });
@@ -55,5 +63,13 @@ export class CreateRefundComponent implements OnInit {
     if(this.data != null){
       this.mode = "Alterar";
     }
+  }
+    
+  onSubmit(form: RefundDTO){
+    //@ts-ignore
+    form.date = this.parserFormatter.format(form.date);
+    this.refundService.update(form).subscribe(
+      e => this.activeModal.close(), e => { console.log(e); }
+    );
   }
 }

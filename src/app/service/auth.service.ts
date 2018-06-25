@@ -55,12 +55,17 @@ export class AuthService extends DataService {
   isLoggedIn(): boolean {
     const token = localStorage.getItem(environment.tokenName);
 
-    if (!token) {
+    if (token == null) {
       return false;
     }
 
     const isExpired = this.jwtHelper.isTokenExpired(token);
     return !isExpired;
+  }
+
+  isExpired(): boolean {
+    const token = localStorage.getItem(environment.tokenName);
+    return this.jwtHelper.isTokenExpired(token);
   }
 
   toObject<T>(obj: any): T {
@@ -82,8 +87,12 @@ export class AuthService extends DataService {
       return false;
     }
 
-    //return this.getRole()['role'] == AuthService.ROLE_ADMIN;
-    return true;
+    return this.getRole()['role'] == AuthService.ROLE_ADMIN;
+  }
+
+  getCompany(){
+    const token = localStorage.getItem(environment.tokenName);
+    return this.jwtHelper.decodeToken(token)['companyName'];
   }
 
 }

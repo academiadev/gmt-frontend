@@ -25,8 +25,11 @@ export const environment = {
             newCompany: backEndUrl + '/user/newCompany/',
         },
         refund: {
-            url: backEndUrl + '/refund',
-        },
+            url: backEndUrl + '/refund/',
+            category: {
+              url: backEndUrl + '/refund/category',
+            }
+          },
         company: {
             url: backEndUrl + '/company',
         },
