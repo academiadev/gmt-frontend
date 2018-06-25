@@ -16,6 +16,15 @@ import { ToastrService } from 'ngx-toastr';
 })
 
 export class ChangePasswordComponent implements OnInit {
+
+  public account = {
+    password: <string>null
+  };
+  public baseColor = '#FFF';
+  public barLabel = 'Password strength:';
+  public strengthLabels = ['(Useless)', '(Weak)', '(Normal)', '(Strong)', '(Great!)'];
+  public myColors = ['#DD2C00', '#FF6D00', '#FFD600', '#AEEA00', '#00C853'];
+
   form: FormGroup;
   errors: Array<any> = [];
   header: Headers;
@@ -70,7 +79,4 @@ export class ChangePasswordComponent implements OnInit {
         }
       });
   }
-
-
-
 }

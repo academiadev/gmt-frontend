@@ -32,6 +32,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { RefundListComponent } from './pages/refund-list/refund-list.component';
 import { ContentCardComponent } from './components/content-card/content-card.component';
 import { UserEditComponent } from './pages/user-edit/user-edit.component';
+import { PasswordStrengthBarModule } from 'ng2-password-strength-bar';
 
 export function tokenGetter() {
   const token = localStorage.getItem(environment.tokenName);
@@ -56,7 +57,7 @@ export function tokenGetter() {
     ViewRefundComponent,
     CreateRefundComponent,
     RefundStatusComponent,
-    UserEditComponent
+    UserEditComponent,
   ],
   imports: [
     FormsModule,
@@ -67,6 +68,7 @@ export function tokenGetter() {
     AppRoutingModule,
     BrowserAnimationsModule,
     LayoutModule,
+    PasswordStrengthBarModule,
     AngularFontAwesomeModule,
     JwtModule.forRoot({
       config: {
