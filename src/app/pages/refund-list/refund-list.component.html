@@ -52,15 +52,24 @@
         </table>
 
         <ng-template #empty_message>
-            <h4 class="text-center mt-5 mb-5">Não foram encontrados reembolsos</h4>
+            <h5 class="text-center mt-5 mb-5">Não foram encontrados reembolsos :(</h5>
         </ng-template>
-        <div class="row no-gutters">
-            <div class="col-6">
-                <button type="button" class="btn btn-primary btn-lg create-refund" (click)="createRefundModal()">Criar Reembolso</button>
+        <ng-container *ngIf="authService.isAdmin() else userFooter">
+            <div class="row no-gutters">
+                <div class="col-12">
+                    <p class="box-info text-center">Exibindo {{refundList.length}} resultados</p>
+                </div>
             </div>
-            <div class="col-6">
-                <p class="box-info text-right">Exibindo {{refundList.length}} resultados</p>
+        </ng-container>
+        <ng-template #userFooter>
+            <div class="row no-gutters">
+                <div class="col-6">
+                    <button type="button" class="btn btn-primary btn-lg create-refund" (click)="createRefundModal()">Criar Reembolso</button>
+                </div>
+                <div class="col-6">
+                    <p class="box-info text-right">Exibindo {{refundList.length}} resultados</p>
+                </div>
             </div>
-        </div>
+        </ng-template>
     </div>
 </contentCard>
