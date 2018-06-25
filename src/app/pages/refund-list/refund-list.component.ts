@@ -41,7 +41,7 @@ export class RefundListComponent implements OnInit {
         console.log(dtos);
       }
     );
-    this.refundList.push(new RefundDTO(1, "2/10/2018", 'Passeio', "50.49", 0, 'WAITING', 'ALIMENTACAO', "a"));
+    // this.refundList.push(new RefundDTO(1, "2/10/2018", 'Passeio', "50.49", 0, 'WAITING', 'ALIMENTACAO', "a"));
   }
 
   ToggleCheckboxes(){
