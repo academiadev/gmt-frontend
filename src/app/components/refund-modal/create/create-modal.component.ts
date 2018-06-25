@@ -66,6 +66,7 @@ export class CreateRefundComponent implements OnInit {
   }
     
   onSubmit(form: RefundDTO){
+    console.log(form);
     //@ts-ignore
     form.date = this.parserFormatter.format(form.date);
     this.refundService.update(form).subscribe(

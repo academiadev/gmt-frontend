@@ -16,8 +16,8 @@ export class RefundService extends DataService {
 
   changeStatus(status: String, refunds: Array<RefundDTO>) {
     let refundIds = refunds.map(r => r.id);
-    let requestData = { status, refundIds };
-    return this.http.post(environment.urls.refund.url, requestData, this.getHeaders()).pipe(
+    let requestData = { status: status, refunds: refundIds };
+    return this.http.post(environment.urls.refund.status.url, requestData, this.getHeaders()).pipe(
       map(res => res),
       catchError(this.handleError)
     );

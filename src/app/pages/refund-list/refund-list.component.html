@@ -42,7 +42,7 @@
                     <td>{{ refund.name }}</td>
                     <td class="text-center"><RefundStatus status="{{ refund.refundStatus }}"></RefundStatus></td>
                     <td class="text-right">R$ {{ refund.value }}</td>
-                    <td class="text-right">{{ refund.categoryFriedly }}</td>
+                    <td class="text-right">{{ refund.categoryFriendly }}</td>
                     <ng-container *ngIf="authService.isAdmin()">
                         <td class="text-right">{{ refund.user }}</td>
                     </ng-container>

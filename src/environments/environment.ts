@@ -28,7 +28,10 @@ export const environment = {
             url: backEndUrl + '/refund/',
             category: {
               url: backEndUrl + '/refund/category',
-            }
+            },
+            status: {
+                url: backEndUrl + '/refund/statusAssign',
+              }
           },
         company: {
             url: backEndUrl + '/company',
