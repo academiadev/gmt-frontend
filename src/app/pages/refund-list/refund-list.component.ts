@@ -1,13 +1,11 @@
-import { catchError } from 'rxjs/operators';
 import { ViewRefundComponent } from './../../components/refund-modal/view/view-modal.component';
 import { CreateRefundComponent } from './../../components/refund-modal/create/create-modal.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { RefundDTO } from './../../dto/refund-dto';
 import { AuthService } from './../../service/auth.service';
-import { Component, OnInit, Injector } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { HttpErrorResponse } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { RefundService } from '../../service/refund.service';
 
@@ -20,8 +18,9 @@ import { RefundService } from '../../service/refund.service';
 
 export class RefundListComponent implements OnInit {
   form: FormGroup;
-  checkboxes = false;
+  masterCheckbox = false;
   refundList: Array<RefundDTO> = [];
+  checkboxList: Array<Boolean> = [];
   tmpDTO: any;
 
   constructor(
@@ -34,23 +33,40 @@ export class RefundListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.refreshRefundList();
+    this.refundList.push(new RefundDTO(1, "2/10/2018", 'Passeio', "50.49", 0, 'WAITING', 'ALIMENTACAO', "a"));
+    this.refundList.push(new RefundDTO(1, "2/10/2018", 'Passeio', "50.49", 0, 'WAITING', 'ALIMENTACAO', "a"));
+    this.refundList.push(new RefundDTO(1, "2/10/2018", 'Passeio', "50.49", 0, 'WAITING', 'ALIMENTACAO', "a"));
+    this.refundList.push(new RefundDTO(1, "2/10/2018", 'Passeio', "50.49", 0, 'WAITING', 'ALIMENTACAO', "a"));
+  }
+
+  resetCheckboxes(){
+    this.checkboxList = [];
+    this.masterCheckbox = false;
+    let listSize = this.refundList.length;
+    while(listSize--) this.checkboxList.push(false);
+  }
+
+  refreshRefundList(){
+    let listSize = 0;
     this.refundService.getAll<RefundDTO[]>().subscribe(
       results => { 
         let dtos: RefundDTO[] = results;
         this.refundList = this.refundList.concat(dtos);
-        console.log(dtos);
+        this.resetCheckboxes();
       }
     );
-    // this.refundList.push(new RefundDTO(1, "2/10/2018", 'Passeio', "50.49", 0, 'WAITING', 'ALIMENTACAO', "a"));
   }
 
-  ToggleCheckboxes(){
-    if(this.refundList.length == 0){
-      return;
+  toggleMasterCheckbox(){
+    this.toggleCheckboxes(this.masterCheckbox)
+  }
+
+  toggleCheckboxes(checked: Boolean){
+    let listSize = this.checkboxList.length;
+    for(let i=0; i < listSize; i++){
+      this.checkboxList[i] = checked;
     }
-
-    let listCount = this.refundList.length - 1;
-
   }
 
   createRefundModal(modalComponent: any = CreateRefundComponent) {
@@ -65,6 +81,19 @@ export class RefundListComponent implements OnInit {
   editRefundModal(refund: RefundDTO) {
     let refundModal = this.createRefundModal(CreateRefundComponent);
     refundModal.componentInstance.data = refund;
+  }
+
+  setRefundStatus(status: String){
+    let listSize = this.checkboxList.length;
+    if(listSize == 0)
+      return;
+    let refunds = [] as any[];
+    for(let i=0; i < listSize; i++){
+      if(this.checkboxList[i])
+        refunds.push(this.refundList[i]);
+    }
+    this.refundService.changeStatus(status, refunds);
+    this.refreshRefundList();
   }
 
 }

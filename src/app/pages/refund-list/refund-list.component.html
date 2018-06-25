@@ -4,8 +4,8 @@
 
     <div class="optional-btn" before>
         <ng-container *ngIf="authService.isAdmin()">
-            <button type="button" class="btn btn-outline-success btn"><fa name="check-circle" class="fa-lg text-success"></fa> &nbsp;Aprovar</button>
-            <button type="button" class="btn btn-outline-danger btn"><fa name="times-circle" class="fa-lg text-danger"></fa> &nbsp;Recusar</button>
+            <button type="button" class="btn btn-outline-success btn" (click)="setRefundStatus('ACCEPTED')"><fa name="check-circle" class="fa-lg text-success"></fa> &nbsp;Aprovar</button>
+            <button type="button" class="btn btn-outline-danger btn" (click)="setRefundStatus('REFUSED')"><fa name="times-circle" class="fa-lg text-danger" ></fa> &nbsp;Recusar</button>
         </ng-container>
     </div>
 
@@ -16,7 +16,7 @@
                     <ng-container *ngIf="authService.isAdmin()">
                         <th scope="col" class="checkbox-column">
                             <div class="form-check">
-                                <input class="form-check-input position-static" [(ngModel)]="checkboxes" type="checkbox" id="header-checkbox">
+                                <input class="form-check-input position-static" [(ngModel)]="masterCheckbox" (change)="toggleMasterCheckbox()" type="checkbox" id="header-checkbox">
                             </div>
                         </th>
                     </ng-container>
@@ -35,14 +35,14 @@
                     <ng-container *ngIf="authService.isAdmin()">
                         <td>
                             <div class="form-check">
-                                <input class="form-check-input position-static" [(ngModel)]="checkboxes" [attr.checkbox-index]="i" type="checkbox">
+                                <input class="form-check-input position-static" [(ngModel)]="checkboxList[i]" [attr.checkbox-index]="i" type="checkbox">
                             </div>
                         </td>
                     </ng-container>
                     <td>{{ refund.name }}</td>
                     <td class="text-center"><RefundStatus status="{{ refund.refundStatus }}"></RefundStatus></td>
                     <td class="text-right">R$ {{ refund.value }}</td>
-                    <td class="text-right">{{ refund.refundCategory }}</td>
+                    <td class="text-right">{{ refund.categoryFriedly }}</td>
                     <ng-container *ngIf="authService.isAdmin()">
                         <td class="text-right">{{ refund.user }}</td>
                     </ng-container>
