@@ -35,7 +35,6 @@
     <div footer>
         <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Fechar</button>
         <ng-template *ngIf="authService.isAdmin(); then isAdmin else notAdmin"></ng-template>
-        <button type="button" class="btn btn-primary" (click)="activeModal.close(''); changeToEditModal();">Alterar</button>
     </div>
 </RefundModal>
 
