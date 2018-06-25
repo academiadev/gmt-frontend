@@ -16,6 +16,7 @@ export class CreateUserComponent implements OnInit {
   form: FormGroup;
   errors: Array<any> = [];
   hasInvitation: Boolean = false;
+  invitationLabel = { false: 'Nome da empresa', true: 'Código-convite' };
 
   constructor(
     private router: Router,
@@ -78,8 +79,11 @@ export class CreateUserComponent implements OnInit {
     }
 
     let callbackSuccess = function(response: Response) {
-      const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
-      this.router.navigate([returnUrl || '/login']);
+      let returnUrl = '/login';
+      if(this.route != null ) {
+        returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
+      }
+      this.router.navigate([returnUrl]);
     };
 
     let callbackFail = function (e) {

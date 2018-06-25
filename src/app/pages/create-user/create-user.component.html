@@ -32,17 +32,12 @@
             <label class="custom-control-label" for="customRadio2">Criar nova empresa (Administrador)</label>
         </div>
 
-        <div *ngIf="hasInvitation" class="row mt-3 mb-3">
-            <label for="invite-code">Código-convite</label>
+        <div class="row mt-3 mb-3">
+            <label for="company-name">{{ invitationLabel[hasInvitation] }}</label>
+            <input formControlName="company" type="text" id="company-name" class="login-control" required>
         </div>
 
-        <div *ngIf="!hasInvitation" class="row mt-3 mb-3">
-            <label for="company-name">Nome da empresa</label>
-        </div>
-
-        <input formControlName="company" type="text" id="company-name" class="login-control" required>
-
-        <div class="row mt-5 mb-4">
+        <div class="row mt-3 mb-4">
             <button class="btn btn-lg btn-primary btn-block" type="submit">Cadastrar</button>
         </div>
     </form>
