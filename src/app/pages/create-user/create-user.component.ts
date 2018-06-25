@@ -78,16 +78,13 @@ export class CreateUserComponent implements OnInit {
       //return;
     }
 
-    let callbackSuccess = function(response: Response) {
-      let returnUrl = '/login';
-      if(this.route != null ) {
-        returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
-      }
+    let callbackSuccess = (success) => {
+      let returnUrl = this.route.snapshot.queryParamMap['returnUrl'] || 'login';
       this.router.navigate([returnUrl]);
     };
 
-    let callbackFail = function (e) {
-      if (e instanceof BadCredentialsError) {
+    let callbackFail = (error) => {
+      if (error instanceof BadCredentialsError) {
         this.form.setErrors({ 'invalido': true });
       } else {
         this.errors = ["Ocorreu um erro durante a autenticação"];
