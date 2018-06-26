@@ -12,7 +12,7 @@
             <div class="row mt-1 mb-1">
                 <div class="col-6">
                     <label for="input-categoria">Categoria</label>
-                    <select formControlName="category" class="custom-select">
+                    <select formControlName="refundCategory" class="custom-select">
                         <option *ngFor="let category of categories" value="{{ category.name }}">{{ category.friendlyName }}</option>
                     </select>
                 </div>

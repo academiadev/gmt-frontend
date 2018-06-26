@@ -54,7 +54,7 @@ export class CreateRefundComponent implements OnInit {
         formDefault.name,
         [ Validators.required ]
       ),
-      'category': new FormControl(
+      'refundCategory': new FormControl(
         formDefault.refundCategory,
         [ Validators.required ]
       ),
@@ -67,11 +67,27 @@ export class CreateRefundComponent implements OnInit {
     
   onSubmit(form: RefundDTO){
     form.file = "";
-    console.log(form);
     //@ts-ignore
-    form.date = this.parserFormatter.format(form.date);
+    form.date = this.formatSendDate(form.date);
     this.refundService.update(form).subscribe(
       e => location.reload(), e => { console.log(e); }
     );
+  }
+
+  formatSendDate(date) {
+    let day = date.day.toString();
+
+    if(day.length == 1){
+      day = "0".concat(day);
+    }
+
+    let month = date.month.toString();
+    if(month.length == 1){
+      month = "0".concat(month);
+    }
+
+    let year = date.year;
+
+    return day+"/"+month+"/"+year;
   }
 }
