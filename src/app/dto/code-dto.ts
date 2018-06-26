@@ -1,6 +1,7 @@
 export class CodeDTO {
     constructor(
-        private type: string,
-        private code: string
+        private companyAdminCode: string,
+        private companyUserCode: string,
+        private name: string
     ) { }
 }

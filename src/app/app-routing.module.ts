@@ -18,20 +18,21 @@ const routes: Routes = [
   {
     path: 'registrar', component: CreateUserComponent, canActivate: [LoginGuard],
     children: [
-      { path: ':token', component: CreateUserComponent }
+      { path: ':token', component: CreateUserComponent, canActivate: [LoginGuard] }
     ]
   },
-  { path: 'trocar-senha', redirectTo: 'perdi-senha', pathMatch: 'full', canActivate: [LoginGuard] },
-  { path: 'trocar-senha/:codigo', component: ChangePasswordComponent, canActivate: [LoginGuard] },
   { path: 'perdi-senha', component: RequestPasswordComponent, canActivate: [LoginGuard] },
-  { path: 'not-found', component: NotFoundComponent },
+  { path: 'trocar-senha', redirectTo: 'perdi-senha', pathMatch: 'full', canActivate: [LoginGuard] },
+  { path: 'trocar-senha/:codigo', component: ChangePasswordComponent },
+
+  // { path: 'home', component: RefundListComponent, canActivate: [AuthGuard] },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: RefundListComponent },
   { path: 'perfil', component: UserEditComponent },
-  { path: 'empresa', component: CompanyComponent},
-  {
-    path: '', component: RefundListComponent, canActivate: [AuthGuard],
-  },
-  { path: '**', component: NotFoundComponent }
+  { path: 'empresa', component: CompanyComponent },
+  { path: 'not-found', component: NotFoundComponent },
+  { path: '**', redirectTo: 'not-found', pathMatch: 'full' },
+
 ];
 
 @NgModule({

@@ -9,7 +9,7 @@
               </tr>
           </thead>
           <tbody>
-              <tr *ngFor="let code of codesList">
+              <tr *ngFor="let code of codesList; let i = index">
                   <td>{{ code.type }}</td>
                   <td>{{ code.code }}</td>
               </tr>

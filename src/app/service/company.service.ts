@@ -10,11 +10,15 @@ import { environment } from './../../environments/environment';
 export class CompanyService extends DataService {
 
   constructor(http: HttpClient) {
-    super(environment.urls.user.company, http);
+    super(environment.urls.company.url, http);
   }
 
   getCodes() {
-    return this.http.post(environment.urls.company.url, this.getHeaders());
+    let obj;
+    this.http.get(environment.urls.company.url, this.getHeaders()).subscribe( (res:Response) => {
+      obj = res.json();
+    });
+    return obj;
   }
-  
+
 }

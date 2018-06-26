@@ -11,27 +11,24 @@ export const environment = {
         auth: {
             url: backEndUrl + '/auth',
             login: backEndUrl + '/auth/login',
+            isauth: backEndUrl + '/auth/isauth',
             refresh: backEndUrl + '/auth/refresh',
             changePassword: backEndUrl + '/auth/change-password',
         },
-        password: {
-            request: backEndUrl + '/password/request',
-            new: backEndUrl + '/password/new-password',
-        },
-        user: {
-            url: backEndUrl + '/user/',
-            email: backEndUrl + '/user/email/',
-            company: backEndUrl + '/user/company/',
-            newCompany: backEndUrl + '/user/newCompany/',
+        company: {
+            url: backEndUrl + '/company/',
         },
         refund: {
             url: backEndUrl + '/refund/',
-            category: {
-              url: backEndUrl + '/refund/category',
-            }
-          },
-        company: {
-            url: backEndUrl + '/company',
+            category: backEndUrl + '/refund/category',
+            statusAssign: backEndUrl + '/refund/statusAssign',
+        },
+        user: {
+            url: backEndUrl + '/user/',
+            email: backEndUrl + '/user/email',
+            forgotPassword: backEndUrl + '/user/forgotPassword',
+            newCompany: backEndUrl + '/user/newCompany',
+            redefinePassword: backEndUrl + '/user/redefinePassword',
         },
     }
 };

@@ -10,7 +10,7 @@ import { RefundDTO } from '../dto/refund-dto';
 export class CategoryService extends DataService {
 
   constructor(http: HttpClient) {
-    super(environment.urls.refund.category.url, http);
+    super(environment.urls.refund.category, http);
   }
 
   getAllFriendly(){

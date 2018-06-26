@@ -40,7 +40,7 @@ export class UserService extends DataService {
 
   requestPassword(email: String): Observable<Response> {
     console.log(email);
-    return this.http.post(environment.urls.password.request, email).pipe(
+    return this.http.post(environment.urls.user.email, email).pipe(
       map(res => <Response>res),
       catchError(this.handleError)
     );
@@ -48,7 +48,7 @@ export class UserService extends DataService {
  
   newPassword(email: String): Observable<Response> {
     console.log(email);
-    return this.http.post(environment.urls.password.new, email).pipe(
+    return this.http.post(environment.urls.auth.changePassword, email).pipe(
       map(res => <Response>res),
       catchError(this.handleError)
     );
@@ -62,11 +62,11 @@ export class UserService extends DataService {
     );
   }
 
-  requestEmail(email: string): Observable<Response> {
-    return this.http.post(environment.urls.user.email, email).pipe(
-      map(res => <Response>res),
-      catchError(this.handleError)
-    );
+  requestEmail(emailString: string): any {
+    const myEmail = { email: emailString };
+    return this.http.post(environment.urls.user.email, myEmail).subscribe( 
+      (success) => { console.log(success); return success; },
+      (error) => { console.log(error); return error });
   }
-
+  
 }
