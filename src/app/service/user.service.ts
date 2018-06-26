@@ -32,7 +32,7 @@ export class UserService extends DataService {
 
   registerUserCompany(user: UserDTO): Observable<Response> {
     console.log(user);
-    return this.http.post(environment.urls.user.company, user).pipe(
+    return this.http.post(environment.urls.user.newCompany, user).pipe(
       map(res => <Response>res),
       catchError(this.handleError)
     );
