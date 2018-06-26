@@ -18,8 +18,7 @@ export class CompanyComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.CompanyCods = this.companyService.getCodes();
-    console.log(this.codesList);
+     this.companyService.getCodes();
   }
 
 }
