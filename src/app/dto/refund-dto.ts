@@ -1,3 +1,5 @@
+import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+
 export class RefundDTO {
     categoryFriendly: String = "";
     constructor(
@@ -13,9 +15,9 @@ export class RefundDTO {
         this.categoryFriendly = RefundDTO.friendlyCategory(this.refundCategory);
     }
 
-    getSplitDate() {
-        let splitDate = this.date.split(/\/|\-/)
-        return {'day': parseInt(splitDate[0]), 'month': parseInt(splitDate[1]), 'year': parseInt(splitDate[2])}
+    static getSplitDate(date): NgbDateStruct {
+        let splitDate = date.split(/\/|\-/)
+        return {day: parseInt(splitDate[2]), month: parseInt(splitDate[1]), year: parseInt(splitDate[0])}
     }
 
     static friendlyCategory(category){

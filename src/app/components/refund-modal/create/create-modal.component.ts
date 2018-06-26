@@ -38,7 +38,9 @@ export class CreateRefundComponent implements OnInit {
 
     if(this.data != null){
       Object.assign(formDefault, this.data)
-      formDefault.date = this.data.getSplitDate()
+      console.log(this.data);
+      formDefault.date = RefundDTO.getSplitDate(this.data.date);
+      console.log(formDefault.date);
     }
 
     this.form = new FormGroup({
