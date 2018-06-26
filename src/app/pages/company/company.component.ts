@@ -9,6 +9,7 @@ import { CompanyService } from '../../service/company.service';
   styleUrls: ['./company.component.scss']
 })
 export class CompanyComponent implements OnInit {
+  codeList: Array<any> = [];
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -16,7 +17,7 @@ export class CompanyComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    let codelist  = this.companyService.getCodes().subscribe();
+    //this.codelist = this.companyService.getCodes().subscribe();
 
     // this.codesList.push(new CodeDTO('Administrador','JU484JOFAS8390022JD'))
     // this.codesList.push(new CodeDTO('Usuario','JU484JOFAS8390022JD'))

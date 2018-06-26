@@ -9,14 +9,12 @@ export const environment = {
     tokenName: 'access_token',
     urls: {
         auth: {
-            url: backEndUrl + '/auth',
-            login: backEndUrl + '/auth/login',
-            refresh: backEndUrl + '/auth/refresh',
-            changePassword: backEndUrl + '/auth/change-password',
-        },
-        password: {
-            request: backEndUrl + '/password/request',
-            new: backEndUrl + '/password/new-password',
+          url: backEndUrl + '/auth',
+          login: backEndUrl + '/auth/login',
+          refresh: backEndUrl + '/auth/refresh',
+          changePassword: backEndUrl + '/auth/change-password',
+          requestPassword: backEndUrl + '/password/request',
+          newPassword: backEndUrl + '/password/new-password',
         },
         user: {
             url: backEndUrl + '/user/',
@@ -25,18 +23,15 @@ export const environment = {
             newCompany: backEndUrl + '/user/newCompany/',
         },
         refund: {
-            url: backEndUrl + '/refund/',
-            category: {
-              url: backEndUrl + '/refund/category',
-            },
-            status: {
-                url: backEndUrl + '/refund/statusAssign',
-              }
+          url: backEndUrl + '/refund/',
+          category: {
+            url: backEndUrl + '/refund/category',
           },
-        company: {
-            url: backEndUrl + '/company',
+          status: {
+            url: backEndUrl + '/refund/statusAssign',
+          }
         },
-    }
+      }
 };
 
 /*

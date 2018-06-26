@@ -32,7 +32,7 @@ export class UserService extends DataService {
 
   registerUserCompany(user: UserDTO): Observable<Response> {
     console.log(user);
-    return this.http.post(environment.urls.user.newCompany, user).pipe(
+    return this.http.post(environment.urls.user.company, user).pipe(
       map(res => <Response>res),
       catchError(this.handleError)
     );
@@ -40,7 +40,7 @@ export class UserService extends DataService {
 
   requestPassword(email: String): Observable<Response> {
     console.log(email);
-    return this.http.post(environment.urls.password.request, email).pipe(
+    return this.http.post(environment.urls.auth.requestPassword, email).pipe(
       map(res => <Response>res),
       catchError(this.handleError)
     );
@@ -48,7 +48,7 @@ export class UserService extends DataService {
  
   newPassword(email: String): Observable<Response> {
     console.log(email);
-    return this.http.post(environment.urls.password.new, email).pipe(
+    return this.http.post(environment.urls.auth.newPassword, email).pipe(
       map(res => <Response>res),
       catchError(this.handleError)
     );

@@ -14,7 +14,7 @@ export class CompanyService extends DataService {
   }
 
   getCodes() {
-    return this.http.post(environment.urls.company.url, this.getHeaders());
+    return this.http.post(environment.urls.user.company, this.getHeaders());
   }
   
 }
