@@ -38,6 +38,13 @@ export class DataService {
         );
     }
 
+    change<T>(object): Observable<T> {
+        return this.http.put(this.url, object, this.getHeaders()).pipe(
+            map(res => <T>res),
+            catchError(this.handleError)
+        );
+    }
+
     protected handleError(error: HttpErrorResponse) {
         if (error.status === 400) {
             return throwError(new BadInputError(error));

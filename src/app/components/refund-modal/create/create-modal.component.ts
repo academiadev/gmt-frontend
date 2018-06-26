@@ -38,9 +38,7 @@ export class CreateRefundComponent implements OnInit {
 
     if(this.data != null){
       Object.assign(formDefault, this.data)
-      console.log(this.data);
       formDefault.date = RefundDTO.getSplitDate(this.data.date);
-      console.log(formDefault.date);
     }
 
     this.form = new FormGroup({
@@ -68,10 +66,16 @@ export class CreateRefundComponent implements OnInit {
   }
     
   onSubmit(form: RefundDTO){
+    let requestType = this.refundService.update.bind(this.refundService);
+    if(this.data != null){
+      form.id = this.data.id;
+      requestType = this.refundService.change.bind(this.refundService);
+    }
+
     form.file = "";
-    //@ts-ignore
     form.date = this.formatSendDate(form.date);
-    this.refundService.update(form).subscribe(
+
+    requestType(form).subscribe(
       e => location.reload(), e => { console.log(e); }
     );
   }
