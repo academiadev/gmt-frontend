@@ -37,6 +37,6 @@ export class ViewRefundComponent{
   }
 
   setRefundStatus(status: String){
-    this.refundService.changeStatus(status, [this.data]).subscribe(e => {console.log(e); location.reload();});
+    this.refundService.changeStatus(status, [this.data]).subscribe(e => location.reload());
   }
 }

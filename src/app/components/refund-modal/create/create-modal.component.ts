@@ -70,7 +70,7 @@ export class CreateRefundComponent implements OnInit {
     //@ts-ignore
     form.date = this.parserFormatter.format(form.date);
     this.refundService.update(form).subscribe(
-      e => this.activeModal.close(), e => { console.log(e); }
+      e => location.reload(), e => { console.log(e); }
     );
   }
 }

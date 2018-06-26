@@ -3,7 +3,7 @@ import { CreateRefundComponent } from './../../components/refund-modal/create/cr
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { RefundDTO } from './../../dto/refund-dto';
 import { AuthService } from './../../service/auth.service';
-import { Component, OnInit, } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -29,7 +29,8 @@ export class RefundListComponent implements OnInit {
     private route: ActivatedRoute,
     private toaster: ToastrService,
     private modalService: NgbModal,
-    private refundService: RefundService
+    private refundService: RefundService,
+    private cd: ChangeDetectorRef
   ) { }
 
   ngOnInit() {
