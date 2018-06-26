@@ -16,10 +16,13 @@ export const environment = {
           requestPassword: backEndUrl + '/user/forgotPassword',
           newPassword: backEndUrl + '/password/new-password',
         },
+        company: {
+          url: backEndUrl + '/company/',
+        },
         user: {
             url: backEndUrl + '/user/',
             email: backEndUrl + '/user/email/',
-            company: backEndUrl + '/user/company/',
+            company: backEndUrl + '/user/company',
             newCompany: backEndUrl + '/user/newCompany/',
         },
         refund: {
