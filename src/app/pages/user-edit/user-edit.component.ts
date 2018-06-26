@@ -14,6 +14,7 @@ import { UserValidators } from "../../validators/user.validators";
 export class UserEditComponent implements OnInit {
   form: FormGroup;
   errors: Array<any> = [];
+  enviado: boolean = false;
 
   constructor(
     private router: Router,
@@ -29,7 +30,7 @@ export class UserEditComponent implements OnInit {
         validators: [Validators.minLength(4), Validators.required],
         updateOn: 'submit'
       }),
-      'password': new FormControl(null, {
+      'newPassword': new FormControl(null, {
         validators: [Validators.minLength(4), Validators.required],
         updateOn: 'submit'
       }),
@@ -38,6 +39,9 @@ export class UserEditComponent implements OnInit {
         updateOn: 'submit'
       }),
     });
+
+    
+
   }
 
   onSubmit(passwords: ChangePassworDTO) {
@@ -45,14 +49,14 @@ export class UserEditComponent implements OnInit {
       this.errors = [];
       if (!this.form.controls.oldPassword.valid)
         this.errors.push("Forneça uma senha válida!");
-      if (!this.form.controls.password.valid)
+      if (!this.form.controls.newPassword.valid)
         this.errors.push("Forneça uma nova senha válida!");
       if (!this.form.controls.confPassword.valid)
         this.errors.push("Confirmacao de senha Invalida!");
       return;
     }
-
-    if (UserValidators.confirmPasswords(this.form)) {
+    console.log(this.form.controls.newPassword.value);
+    if (UserValidators.confirmPasswords(this.form.controls.newPassword.value, this.form.controls.confPassword.value)) {
       if (this.form.valid) { this.errors = []; }
       this.errors.push("Senhas não coincidem!");
       return;
@@ -60,6 +64,8 @@ export class UserEditComponent implements OnInit {
 
     this.userService.changePassword(passwords).subscribe((response: Response) => {
       console.log(response);
+      this.enviado = true;
+      return; 
     }, (e) => { 
       this.errors = ["Ocorreu um erro durante a autenticação"];
     });

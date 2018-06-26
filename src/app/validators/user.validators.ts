@@ -3,9 +3,7 @@ import { ValidationErrors } from '@angular/forms';
 
 export class UserValidators {
 
-    static confirmPasswords(formGroup: FormGroup): ValidationErrors | boolean {
-        const password: string = formGroup.controls.password.value;
-        const confPassword: string = formGroup.controls.confPassword.value;
+    static confirmPasswords(password: string, confPassword: string): ValidationErrors | boolean {
         if (password != confPassword) {
             return { confirmPassowrds: true }
         }

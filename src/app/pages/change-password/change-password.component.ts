@@ -6,9 +6,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators, Form } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { AuthService } from './../../service/auth.service';
-import { ToastrService } from 'ngx-toastr';
-
 @Component({
   selector: 'change-password',
   templateUrl: './change-password.component.html',
@@ -50,14 +47,14 @@ export class ChangePasswordComponent implements OnInit {
         this.errors.push("Senha Invalida!");
       return;
     }
-    if (UserValidators.confirmPasswords(this.form)) {
+    if (UserValidators.confirmPasswords(this.form.controls.password.value, this.form.controls.confPassword.value)) {
       this.errors.push("Senhas não coincidem!");
       return;
     }
 
     let headerToken: string = this.route.snapshot.params.codigo;
 
-    this.userService.redefinePassword(password).subscribe((respose: Response) => {
+    this.userService.redefinePassword(password, headerToken).subscribe((respose: Response) => {
       console.log(respose);
       const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
       this.router.navigate([returnUrl || '/login']);

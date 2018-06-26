@@ -67,7 +67,7 @@ export class CreateUserComponent implements OnInit {
       return;
     }
 
-    if (UserValidators.confirmPasswords(this.form)) {
+    if (UserValidators.confirmPasswords(this.form.controls.password.value, this.form.controls.confPassword.value)) {
       if(this.form.valid) {this.errors = [];}
       this.errors.push("Senhas não coincidem!");
       return;
