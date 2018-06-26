@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { RefundService } from './../../../service/refund.service';
 import { AuthService } from './../../../service/auth.service';
 import { CreateRefundComponent } from './../create/create-modal.component';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -16,7 +18,9 @@ export class ViewRefundComponent{
   constructor(
     public activeModal: NgbActiveModal,
     public modalService: NgbModal,
-    public authService: AuthService
+    public authService: AuthService,
+    public refundService: RefundService,
+    private router: Router,
   ) { }
 
   changeToEditModal(){
@@ -30,5 +34,9 @@ export class ViewRefundComponent{
     }
 
     return "<a href='"+this.data.file+"'>Visualizar</a>"
+  }
+
+  setRefundStatus(status: String){
+    this.refundService.changeStatus(status, [this.data]).subscribe(e => {console.log(e); location.reload();});
   }
 }
