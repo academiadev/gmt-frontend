@@ -73,7 +73,7 @@ export class CreateUserComponent implements OnInit {
       return;
     }
     
-    if (!this.userService.requestEmail(this.form.controls.email.value)) {
+    if (!this.userService.CheckEmail(this.form.controls.email.value)) {
       if(this.form.valid) {this.errors = [];}
       this.errors.push("Email Ja utilizado!");
       return;

@@ -25,12 +25,11 @@ const routes: Routes = [
   { path: 'trocar-senha', redirectTo: 'perdi-senha', pathMatch: 'full', canActivate: [LoginGuard] },
   { path: 'trocar-senha/:codigo', component: ChangePasswordComponent },
 
-  // { path: 'home', component: RefundListComponent, canActivate: [AuthGuard] },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', component: RefundListComponent },
-  { path: 'perfil', component: UserEditComponent },
-  { path: 'empresa', component: CompanyComponent },
-  { path: 'not-found', component: NotFoundComponent },
+  { path: 'home', component: RefundListComponent, canActivate: [AuthGuard] },
+  { path: 'perfil', component: UserEditComponent, canActivate: [AuthGuard] },
+  { path: 'empresa', component: CompanyComponent, canActivate: [AuthGuard] },
+  { path: 'not-found', component: NotFoundComponent, canActivate: [AuthGuard] },
   { path: '**', redirectTo: 'not-found', pathMatch: 'full' },
 
 ];

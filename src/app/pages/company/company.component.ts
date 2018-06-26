@@ -11,8 +11,6 @@ export class CompanyComponent implements OnInit {
   companyCodes: CodeDTO;
   codesList: Array<any> = [];
 
-
-
   constructor(
     private companyService: CompanyService,
   ) { }

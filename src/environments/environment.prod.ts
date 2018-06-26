@@ -7,25 +7,26 @@ export const environment = {
     auth: {
       url: backEndUrl + '/auth',
       login: backEndUrl + '/auth/login',
-      isauth: backEndUrl + '/auth/isauth',
       refresh: backEndUrl + '/auth/refresh',
       changePassword: backEndUrl + '/auth/change-password',
-      requestPassword: backEndUrl + '/user/forgotPassword',
-      newPassword: backEndUrl + '/password/new-password',
     },
     company: {
       url: backEndUrl + '/company/',
     },
     refund: {
       url: backEndUrl + '/refund/',
-      category: backEndUrl + '/refund/category',
-      statusAssign: backEndUrl + '/refund/statusAssign',
+      category: {
+        url: backEndUrl + '/refund/category',
+      },
+      status: {
+        url: backEndUrl + '/refund/statusAssign',
+      }
     },
     user: {
       url: backEndUrl + '/user/',
-      email: backEndUrl + '/user/email',
-      forgotPassword: backEndUrl + '/user/forgotPassword',
-      newCompany: backEndUrl + '/user/newCompany',
+      email: backEndUrl + '/user/email/',
+      newCompany: backEndUrl + '/user/newCompany/',
+      forgetPassword: backEndUrl + '/user/forgetPassword',
       redefinePassword: backEndUrl + '/user/redefinePassword',
     },
   }

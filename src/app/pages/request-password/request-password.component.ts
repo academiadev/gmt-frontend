@@ -39,12 +39,14 @@ export class RequestPasswordComponent implements OnInit {
         this.errors.push("Forneça um email válido!");
       return;
     }
-    this.userService.requestPassword(email).subscribe((response: Response) => {
+    this.userService.forgetPassword(email).subscribe((response: Response) => {
       console.log(response);
       this.enviado = true;
+      let returnUrl = this.route.snapshot.queryParamMap['returnUrl'] || 'login';
+      this.router.navigate([returnUrl]);
     },
       (e) => {
-      this.errors = ["Ocorreu um erro ao Enviar email"];
+      this.errors = ["Email nao encontrado"];
       });
   }
 

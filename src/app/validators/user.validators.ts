@@ -12,7 +12,7 @@ export class UserValidators {
         return false;
     }
 
-    static temEspacosEmBranco(control: AbstractControl): ValidationErrors | null {
+    static spaces(control: AbstractControl): ValidationErrors | null {
         const valorDoCampo: string = control.value;
         if (valorDoCampo.indexOf(' ') >= 0) {
             return { temEspacosEmBranco: true };

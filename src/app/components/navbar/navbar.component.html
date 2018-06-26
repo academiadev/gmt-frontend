@@ -9,7 +9,7 @@
 
 <ng-template #loggedIn>
   <a class="text-dark" [routerLink]="['/home']">Reembolsos</a>
-  <a class="text-dark" [routerLink]="['/empresa']">Empresa</a>
+  <a *ngIf="authService.isAdmin()" class="text-dark" [routerLink]="['/empresa']">Empresa</a>
   <a class="text-dark" [routerLink]="['/perfil']">Perfil</a>
   <a class="btn btn-outline-primary btn-logout" href="javascript:void(0)" (click)="onClick()"><fa name="sign-out" class="fa-lg text-primary"></fa>&nbsp;Sair</a>
 </ng-template>
