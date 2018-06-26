@@ -10,6 +10,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 
 export class RequestPasswordComponent implements OnInit {
+  enviado = false;
   form: FormGroup;
   submited: boolean = false;
   errors: Array<any> = [];
@@ -32,7 +33,6 @@ export class RequestPasswordComponent implements OnInit {
   }
 
   onSubmit(email: string) {
-    let enviado = false;
     if (this.form.invalid) {
       this.errors = [];
       if (!this.form.controls.email.valid)
@@ -41,7 +41,7 @@ export class RequestPasswordComponent implements OnInit {
     }
     this.userService.requestPassword(email).subscribe((response: Response) => {
       console.log(response);
-      enviado = true;
+      this.enviado = true;
     },
       (e) => {
       this.errors = ["Ocorreu um erro ao Enviar email"];

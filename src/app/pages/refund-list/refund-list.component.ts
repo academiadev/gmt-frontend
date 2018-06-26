@@ -3,7 +3,7 @@ import { CreateRefundComponent } from './../../components/refund-modal/create/cr
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { RefundDTO } from './../../dto/refund-dto';
 import { AuthService } from './../../service/auth.service';
-import { Component, OnInit, } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -29,15 +29,13 @@ export class RefundListComponent implements OnInit {
     private route: ActivatedRoute,
     private toaster: ToastrService,
     private modalService: NgbModal,
-    private refundService: RefundService
+    private refundService: RefundService,
+    private cd: ChangeDetectorRef
   ) { }
 
   ngOnInit() {
     this.refreshRefundList();
-    this.refundList.push(new RefundDTO(1, "2/10/2018", 'Passeio', "50.49", 0, 'WAITING', 'ALIMENTACAO', "a"));
-    this.refundList.push(new RefundDTO(1, "2/10/2018", 'Passeio', "50.49", 0, 'WAITING', 'ALIMENTACAO', "a"));
-    this.refundList.push(new RefundDTO(1, "2/10/2018", 'Passeio', "50.49", 0, 'WAITING', 'ALIMENTACAO', "a"));
-    this.refundList.push(new RefundDTO(1, "2/10/2018", 'Passeio', "50.49", 0, 'WAITING', 'ALIMENTACAO', "a"));
+    //this.refundList.push(new RefundDTO(1, "2/10/2018", 'Passeio', "50.49", "joao", 'WAITING', 'ALIMENTACAO', "a"));
   }
 
   resetCheckboxes(){
@@ -48,11 +46,13 @@ export class RefundListComponent implements OnInit {
   }
 
   refreshRefundList(){
-    let listSize = 0;
     this.refundService.getAll<RefundDTO[]>().subscribe(
       results => { 
-        let dtos: RefundDTO[] = results;
-        this.refundList = this.refundList.concat(dtos);
+        let dtos: RefundDTO[] = results.map(r => {
+          r.categoryFriendly = RefundDTO.friendlyCategory(r.refundCategory);
+          return r;
+        });
+        this.refundList = dtos;
         this.resetCheckboxes();
       }
     );
@@ -92,7 +92,7 @@ export class RefundListComponent implements OnInit {
       if(this.checkboxList[i])
         refunds.push(this.refundList[i]);
     }
-    this.refundService.changeStatus(status, refunds);
+    this.refundService.changeStatus(status, refunds).subscribe(e => this.refreshRefundList());
     this.refreshRefundList();
   }
 

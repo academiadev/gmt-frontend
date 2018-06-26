@@ -30,7 +30,7 @@ export const environment = {
             newCompany: backEndUrl + '/user/newCompany',
             redefinePassword: backEndUrl + '/user/redefinePassword',
         },
-    }
+      }
 };
 
 /*

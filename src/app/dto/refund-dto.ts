@@ -5,7 +5,7 @@ export class RefundDTO {
         public date: String = "1/10/2010",
         public name: String = "",
         public value: String = "0.0",
-        public user: Number = 0,
+        public user: String = "",
         public refundStatus: String = "",
         public refundCategory: String = "",
         public file: String = ""
