@@ -10,6 +10,8 @@ export const environment = {
       isauth: backEndUrl + '/auth/isauth',
       refresh: backEndUrl + '/auth/refresh',
       changePassword: backEndUrl + '/auth/change-password',
+      requestPassword: backEndUrl + '/user/forgotPassword',
+      newPassword: backEndUrl + '/password/new-password',
     },
     company: {
       url: backEndUrl + '/company/',
