@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
 import { CodeDTO } from '../../dto/code-dto';
 import { CompanyService } from '../../service/company.service';
 
@@ -9,18 +8,34 @@ import { CompanyService } from '../../service/company.service';
   styleUrls: ['./company.component.scss']
 })
 export class CompanyComponent implements OnInit {
-  codeList: Array<any> = [];
+  companyCodes: CodeDTO;
+  codesList: Array<any> = [];
+
   constructor(
-    private router: Router,
-    private route: ActivatedRoute,
     private companyService: CompanyService,
   ) { }
 
   ngOnInit() {
-    //this.codelist = this.companyService.getCodes().subscribe();
-
-    // this.codesList.push(new CodeDTO('Administrador','JU484JOFAS8390022JD'))
-    // this.codesList.push(new CodeDTO('Usuario','JU484JOFAS8390022JD'))
+    this.codesList = this.refreshListCodes();
+    console.log(this.codesList);
   }
 
+  refreshListCodes() {
+    let list1 = {};
+    let list2 = {};
+    let obj = [];
+    this.companyService.getAll<CodeDTO>().subscribe(
+      results => {
+        let dto: CodeDTO = results;
+        list1['type'] = 'Administrador';
+        list1['code'] = dto['companyAdminCode'];
+        list2['type'] = 'Funcionario';
+        list2['code'] = dto['companyUserCode'];
+        obj.push(list1);
+        obj.push(list2);
+        this.companyCodes = dto;
+      }
+    );
+    return obj;
+  }
 }

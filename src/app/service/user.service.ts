@@ -5,7 +5,6 @@ import { environment } from './../../environments/environment';
 import { map, catchError } from 'rxjs/operators';
 import { Observable } from 'rxjs/internal/Observable';
 import { UserDTO } from '../dto/user-dto';
-import { ValidationErrors } from '@angular/forms';
 import { ChangePassworDTO } from '../dto/change-passwor-dto';
 
 
@@ -23,7 +22,6 @@ export class UserService extends DataService {
   */
 
   registerUser(user: UserDTO): Observable<Response> {
-    console.log(user);
     return this.http.post(environment.urls.user.url, user).pipe(
       map(res => <Response>res),
       catchError(this.handleError)
@@ -31,39 +29,37 @@ export class UserService extends DataService {
   }
 
   registerUserCompany(user: UserDTO): Observable<Response> {
-    console.log(user);
     return this.http.post(environment.urls.user.newCompany, user).pipe(
       map(res => <Response>res),
       catchError(this.handleError)
     );
   }
 
-  requestPassword(email: String): Observable<Response> {
-    console.log(email);
-    return this.http.post(environment.urls.auth.requestPassword, email).pipe(
-      map(res => <Response>res),
-      catchError(this.handleError)
-    );
-  }
- 
-  newPassword(email: String): Observable<Response> {
-    console.log(email);
-    return this.http.post(environment.urls.auth.newPassword, email).pipe(
-      map(res => <Response>res),
-      catchError(this.handleError)
-    );
+  CheckEmail(emailString: string): any {
+    const myEmail = { email: emailString };
+    return this.http.post(environment.urls.user.email, myEmail).subscribe( 
+      (success) => { console.log(success); return success; },
+      (error) => { console.log(error); return error });
   }
 
   changePassword(passwords: ChangePassworDTO): Observable<Response> {
-    console.log(passwords);
     return this.http.post(environment.urls.auth.changePassword, passwords).pipe(
       map(res => <Response>res),
       catchError(this.handleError)
     );
   }
 
-  requestEmail(email: string): Observable<Response> {
-    return this.http.post(environment.urls.user.email, email).pipe(
+  forgetPassword(emailString: String): Observable<Response> {
+    const myEmail = { email: emailString };
+    return this.http.post(environment.urls.user.forgetPassword, myEmail).pipe(
+      map(res => <Response>res),
+      catchError(this.handleError)
+    );
+  }
+
+  redefinePassword(password: String): Observable<Response> {
+    const myPassword = { passwor: password };
+    return this.http.post(environment.urls.user.redefinePassword, myPassword).pipe(
       map(res => <Response>res),
       catchError(this.handleError)
     );

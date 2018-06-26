@@ -1,4 +1,4 @@
-let backEndUrl = 'https://bluerefundgmt.herokuapp.com';
+let backEndUrl = 'https://localhost:8082';
 export const environment = {
   production: false,
   backEndUrl: backEndUrl,
@@ -9,14 +9,9 @@ export const environment = {
       login: backEndUrl + '/auth/login',
       refresh: backEndUrl + '/auth/refresh',
       changePassword: backEndUrl + '/auth/change-password',
-      requestPassword: backEndUrl + '/user/forgotPassword',
-      newPassword: backEndUrl + '/password/new-password',
     },
-    user: {
-        url: backEndUrl + '/user/',
-        email: backEndUrl + '/user/email/',
-        company: backEndUrl + '/user/company/',
-        newCompany: backEndUrl + '/user/newCompany/',
+    company: {
+      url: backEndUrl + '/company/',
     },
     refund: {
       url: backEndUrl + '/refund/',
@@ -26,6 +21,13 @@ export const environment = {
       status: {
         url: backEndUrl + '/refund/statusAssign',
       }
+    },
+    user: {
+      url: backEndUrl + '/user/',
+      email: backEndUrl + '/user/email/',
+      newCompany: backEndUrl + '/user/newCompany/',
+      forgetPassword: backEndUrl + '/user/forgetPassword',
+      redefinePassword: backEndUrl + '/user/redefinePassword',
     },
   }
 };

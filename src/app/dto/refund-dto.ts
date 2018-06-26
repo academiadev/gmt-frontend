@@ -10,7 +10,7 @@ export class RefundDTO {
         public user: String = "",
         public refundStatus: String = "",
         public refundCategory: String = "",
-        public file: String = ""
+        public file: String = "NULL"
     ) { 
         this.categoryFriendly = RefundDTO.friendlyCategory(this.refundCategory);
     }

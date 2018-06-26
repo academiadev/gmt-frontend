@@ -23,7 +23,7 @@ export class AuthService extends DataService {
     private jwtHelper: JwtHelperService,
     private router: Router
   ) {
-    super(environment.urls.auth.url, http);
+    super(environment.urls.auth.login, http);
   }
 
   /**

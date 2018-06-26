@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { DataService } from './data.service';
 import { environment } from './../../environments/environment';
+import { CodeDTO } from '../dto/code-dto';
 
 @Injectable({
   providedIn: 'root'
@@ -10,11 +11,7 @@ import { environment } from './../../environments/environment';
 export class CompanyService extends DataService {
 
   constructor(http: HttpClient) {
-    super(environment.urls.user.company, http);
+    super(environment.urls.company.url, http);
   }
 
-  getCodes() {
-    return this.http.post(environment.urls.user.company, this.getHeaders());
-  }
-  
 }

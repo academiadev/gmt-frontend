@@ -31,12 +31,12 @@ export class ChangePasswordComponent implements OnInit {
       'password': new FormControl('',
         [
           Validators.minLength(4), Validators.required,
-          UserValidators.temEspacosEmBranco
+          UserValidators.spaces
         ]),
       'confPassword': new FormControl('',
         [
           Validators.minLength(4), Validators.required,
-          UserValidators.temEspacosEmBranco
+          UserValidators.spaces
         ]),
     });
   }
@@ -57,7 +57,7 @@ export class ChangePasswordComponent implements OnInit {
 
     let headerToken: string = this.route.snapshot.params.codigo;
 
-    this.userService.newPassword(password).subscribe((respose: Response) => {
+    this.userService.redefinePassword(password).subscribe((respose: Response) => {
       console.log(respose);
       const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
       this.router.navigate([returnUrl || '/login']);
