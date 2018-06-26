@@ -37,13 +37,15 @@ export class UserService extends DataService {
 
   CheckEmail(emailString: string): any {
     const myEmail = { email: emailString };
-    return this.http.post(environment.urls.user.email, myEmail).subscribe( 
+    return this.http.post(environment.urls.user.email, myEmail).subscribe(
       (success) => { console.log(success); return success; },
-      (error) => { console.log(error); return error });
+      (error) => { console.log(error); return error }
+    );
   }
 
   changePassword(passwords: ChangePassworDTO): Observable<Response> {
-    return this.http.post(environment.urls.auth.changePassword, passwords).pipe(
+    console.log(passwords);
+    return this.http.post(environment.urls.auth.changePassword, passwords, this.getHeaders()).pipe(
       map(res => <Response>res),
       catchError(this.handleError)
     );
@@ -57,9 +59,12 @@ export class UserService extends DataService {
     );
   }
 
-  redefinePassword(password: String): Observable<Response> {
+  redefinePassword(password: String, get: string): Observable<Response> {
     const myPassword = { passwor: password };
-    return this.http.post(environment.urls.user.redefinePassword, myPassword).pipe(
+    let requestHeaders = new HttpHeaders();
+    requestHeaders = requestHeaders.set('Authorization', 'Bearer ' + get);
+    const myGet = { headers: requestHeaders };
+    return this.http.post(environment.urls.user.redefinePassword, myPassword, myGet).pipe(
       map(res => <Response>res),
       catchError(this.handleError)
     );
