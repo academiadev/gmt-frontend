@@ -8,17 +8,33 @@ import { CompanyService } from '../../service/company.service';
   styleUrls: ['./company.component.scss']
 })
 export class CompanyComponent implements OnInit {
-  CompanyCods: CodeDTO;
-  codesList: Array<CodeDTO> = [];
+  companyCodes: CodeDTO;
+  codesList: Array<Array<any>> = [];
   tmpDTO: any;
-
 
   constructor(
     private companyService: CompanyService,
   ) { }
 
   ngOnInit() {
-     this.companyService.getCodes();
+    this.refreshListCodes();
+    // this.companyService.getCodes();
+    // getCodes() {
+    //   let obj = [];
+    //   this.http.get(environment.urls.company.url, this.getHeaders()).subscribe( (res:CodeDTO) => {
+    //     obj.push(new CodeDTO( res['companyAdminCode'], res['companyUserCode'], res['name'] ));
+    //     console.log(obj);
+    //     return obj;
+    //   });
+    // }
   }
 
+  refreshListCodes(){
+    this.companyService.getAll<CodeDTO>().subscribe(
+      results => { 
+        let dto: CodeDTO = results; 
+        this.companyCodes = dto;
+      }
+    );
+  }
 }

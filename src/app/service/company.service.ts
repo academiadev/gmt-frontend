@@ -14,13 +14,4 @@ export class CompanyService extends DataService {
     super(environment.urls.company.url, http);
   }
 
-  getCodes() {
-    let obj = [];
-    this.http.get(environment.urls.company.url, this.getHeaders()).subscribe( (res:CodeDTO) => {
-      obj.push(new CodeDTO( res['companyAdminCode'], res['companyUserCode'], res['name'] ));
-      console.log(obj);
-      return obj;
-    });
-  }
-
 }
